@@ -1,0 +1,83 @@
+Avondale Type Co., Avondale Type Company LLC
+
+Commercial License
+
+This License Agreement (“Agreement”) is a legally binding contract between the purchaser (“You”) and Avondale Type Company LLC. (“ATC”). By purchasing a font from ATC, you agree to use that font under a specific set of conditions. It is your responsibility to read and understand this Agreement as it defines your rights, the acceptable uses of our Fonts, and the rights ATC reserves.
+
+By downloading and payment for ATC Fonts, You indicate that You have read, understand and consent to the terms of this Agreement, and that You have the authority to act as the End User (“Licensee”) bound by the terms of this Agreement.
+
+If you have any questions, please contact Avondale Type Co. at info@avondaletypeco.com.
+
+1. Permitted Usage and Restrictions
+
+Installation
+
+Fonts may be installed and used only on the devices for 1 user per license. Fonts may not be stored or used in any manner that makes them accessible to the public or non-licensed third parties (for example a public server.) This license grants a specific set of rights for individual users or organizations purchasing for authorized users or employees only. Font files may under no circumstances be shared with contractors, or freelance employees.
+
+Under the terms of this Agreement, ATC may require Licensee to provide the addresses of all locations where the Licensed Software is installed.
+
+Embedding of Fonts
+
+The embedding of Fonts into digital documents is permitted as long as the document text is not editable, and reasonable measures are taken to ensure recipients of such documents cannot extract or use the embedded Fonts.
+
+This License expressly prohibits the embedding, inclusion, calling, or linking of the Font Software within hardware and software in any form. If you wish to use the Fonts for such purposes, please contact ATC. Notwithstanding, rasterized images of limited text and/or logos created using the Font Software are permitted.
+
+Printer Usage
+
+You may provide a copy of the specified Fonts to a commercial printer for the purposes of producing or reproducing this document. The printer must destroy the font files immediately after production is complete.
+
+Web Fonts @font-face and .woff
+
+All ATC fonts (both .otf, .woff & .woff2) are permitted to be used with @font-face under this Agreement for any website up to 100,000 views per months (per standard license.)
+
+Avondale Type Co. also offers licenses for 500,000, 1 million, 5 million and 10 millon pageviews per month.
+
+For high-volume traffic for usage any usage on websites over 10,000,000 pageviews per 12 months, please contact Avondale Type Co. for a custom licensing agreement.
+
+2. Restrictions
+
+Manipulation and Modification
+
+The use of any font creation or font manipulation program or any attempt to modify the Font for the purposes of creating a derivative Font is expressly prohibited.
+
+Revision, modification, digitization or redigitization, translation, abridgment, condensation, expansion, decompilation, encryption, rearrangement, re-encoding, regardless of the medium on which it is recorded or the format is expressly prohibited.
+
+Printed Goods and Goods for Sale
+
+This License expressly prohibits the use of the Font Software on any product with manufacturing numbers of over 50,000 pieces (standard license.)  Additional licenses may be purchased for 100,000 print. 
+
+For high-quantity print over 100,000, please contact Avondale Type Co. for a custom licensing agreement.
+
+High Risk Use
+
+This license expressly prohibits the right to use the Font Software in any application related to aviation, mass transit, nuclear and chemical facilities, medical equipment, motor vehicles, military usage, or any similar scenario (collectively deemed, “High Risk Use”). ATC and its suppliers disclaim any express or implied warranty of fitness for High Risk Use.
+
+3. Rights Reserved
+
+This Agreement does not grant to Licensee any right, interest, or title in ATC Properties, other than the grant of rights expressly provided in this Agreement. All rights not granted by this license expressly reserved.
+
+You expressly acknowledge that the Font Software, the designs contained therein, the trade names associated therewith are the exclusive property of ATC. All rights not expressly granted under this License are reserved to ATC.
+
+4. Warranty
+
+The licensed software is provided “as is.” To the extent permitted by applicable law, licensor disclaims all warranties, representations and guarantees, express or implied, as to merchantability, fitness for any particular purpose, or otherwise with respect to the licensed software.
+
+If the Font does not perform substantially in accordance with the representations, the entire and exclusive liability and remedy shall be limited to the replacement of the Font Software or the refund of the license fee you paid for the Fonts, as a representative of ATC may elect to do. ATC and its suppliers do not and cannot warrant the performance or results you may obtain by using the Font Software. No refund, legal judgement, or remedy may result in the a number larger than the cost paid by user.
+
+Fees
+
+Fees for Font Software posted on our website may change from time to time. Changes will not be applied retroactively to existing licensees.
+
+5. Termination
+
+Any breach of the terms of this License shall be grounds for immediate termination without prior notice. ATC reserves the right to pursue any and all relevant legal remedies in the event that said breach causes demonstrable harm, financial or otherwise, to ATC. In the event that You are found to have been using ATC Font Software in violation of the terms of this agreement, You likewise agree to immediately discontinue using or return the Font Software to ATC and certify in writing that no copy remains in Your possession or control within 5 business days of notification from ATC.
+
+6. Choice of Law
+
+This Agreement and any action related thereto shall be governed, controlled, interpreted and defined by and under the laws of the State of Illinois and the United States, without regard to the conflict of law provisions thereof.
+
+The exclusive jurisdiction and venue of any action to enforce the decision of binding arbitration shall be the state courts of the State of Illinois for Cook County, or the United States District Court for the Northern District of Illinois and each of the parties hereto submits itself to the exclusive jurisdiction and venue of such courts for the purpose of any such action.
+
+ATC expressly reserves the right to amend or modify future versions of this License Agreement at any time and without prior notification.
+
+Updated 6/07/2016

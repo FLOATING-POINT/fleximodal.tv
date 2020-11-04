@@ -1,0 +1,255 @@
+$dark-grey: #383431;
+$light-grey: #fbfbfb;
+$medium-grey: #BBB;
+$secondary-color: #01e4dd;
+$secondary-color-dark: #00a6a1;
+$secondary-color-darker: #006663;
+
+
+//Login page
+.login h1 {
+	height: 80px;
+}
+.login h1 a {
+  background-image: url(katapult-logo.png) ;
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 60% !important;        
+  background-size: contain !important;
+}
+
+
+//Main toolbar
+#wpadminbar {
+	background:$dark-grey;
+	
+	ul {
+		li {
+			&.hover, &:hover {
+				a, .ab-label {
+					color:$secondary-color !important; 
+
+					&:before, .ab-icon:before {						
+						color:$secondary-color !important; 
+					}
+				}
+			}
+
+			ul {
+				li  {
+
+					&:hover {
+						a {
+							color:$light-grey !important;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+
+
+.wp-admin, .login {
+	//Standard links
+	a, .view-switch a {
+		color:$secondary-color-dark;
+
+		&:hover {
+			color:$secondary-color-darker;
+		}
+
+		&.current:before {
+			color:$secondary-color-dark;
+		}
+	}
+
+	//Button styles
+	.wp-core-ui{
+		.button {
+			border:1px solid $medium-grey;
+			border-radius:0px;
+			padding:6px 20px;
+			height: auto;
+			box-shadow:none;
+			text-shadow:none;
+			margin-right:2px;
+			line-height: 20px;
+		}
+	}
+
+	.wrap, .tablenav.top, .wp-core-ui, .repeater, #loginform {
+		.page-title-action, .ac-button, .button-primary, .acf-button {
+			color:$secondary-color-dark;
+			background-color: $secondary-color-dark;
+			color:#FFF;
+			border-radius:0px;
+			padding:6px 20px;
+			box-shadow:none;
+			text-shadow:none;
+			height: auto;
+			margin-right:2px;
+			border:1px solid $secondary-color-dark;
+
+			&:hover {
+				background-color: $secondary-color;
+				border:1px solid $secondary-color-dark;
+			}
+
+
+		}
+	}
+
+	//Table select and search input
+	.tablenav, .search-box {
+		select, #post-search-input {
+			padding:6px 6px;
+			height: auto;
+			line-height: 20px;
+		}
+
+		.tablenav-pages {
+			a {
+				&:hover {
+					background-color: $secondary-color;
+					border:1px solid $secondary-color-dark;
+				}
+			}
+		}
+	}
+
+	//Main sidebar width
+	#adminmenuback, #adminmenu, #adminmenuwrap {
+		background-color: #FFF;
+		width: 220px;
+	}
+
+	input[type="submit"] {
+		padding: 4px 10px;
+		min-height: 34px;
+	}
+
+	//Main sidebar menu
+	#adminmenu {	
+		li {
+			a {
+				color:$dark-grey;			
+			}
+
+			div.wp-menu-image {
+				margin-left: 8px;
+
+				&:before {
+					color:$dark-grey;	
+				}
+			}
+
+			&.opensub {	
+
+				.wp-submenu {
+					left: 220px;					
+					top:0px;
+				}
+			}
+
+			&.wp-has-current-submenu, &.opensub, &:hover{
+				//background:$secondary-color;
+				//color:#FFF;
+				background:transparent;
+				
+				a {
+					background:$secondary-color;
+					color:#FFF;
+
+					&.wp-has-current-submenu, &.menu-top {
+						color:#FFF;
+						background:$secondary-color;
+					}
+				}
+
+				div.wp-menu-image {
+
+					&:before {
+						color:#FFF !important;		
+					}
+				}
+
+
+				.wp-submenu {
+					width: 220px;
+					background-color: $secondary-color-dark !important;
+					box-shadow:none;
+
+					li {
+						background-color: $secondary-color-dark;
+						
+						a {
+							background-color: $secondary-color-dark;
+						}
+						a:hover {
+							color:#FFF;				
+							background-color:$secondary-color;
+						}
+					}				
+				}
+
+				&:after {
+					border-right-color: $secondary-color-dark !important;
+				}
+			}	
+
+			&.wp-has-current-submenu {
+				&.opensub {	
+					.wp-submenu {
+						left: 0px;
+					}
+				}
+
+			}
+		}
+
+		&:before {
+			content: "";
+		   width: calc(100% - 46px);
+		   max-width: 171px;
+		   height: 73px;
+		   display: block;
+		   background-image: url(katapult-logo.png);
+		   background-size: contain;
+		   background-repeat: no-repeat;
+		   margin: 17px 0 10px 14px;
+		}
+		
+	}
+
+	#wpcontent {
+		margin-left: 220px;
+	}
+
+	#footer-thankyou {
+		display: none;
+	}
+
+	#footer-upgrade {
+		&:after {
+			content:" | theme created by Katapult";
+		}
+	}
+
+	//RWD
+	@media screen and (max-width: 962px) { 
+		#adminmenu {	
+			li {
+				a {
+					color:$dark-grey;			
+				}
+
+				div.wp-menu-image {
+					margin-left: 0px;
+				}
+			}
+		}
+	}
+
+}

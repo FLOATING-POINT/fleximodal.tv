@@ -1,0 +1,105 @@
+{
+    "key": "group_5f9d985ade720",
+    "title": "Promotion take overs",
+    "fields": [
+        {
+            "key": "field_5f9d987ef5243",
+            "label": "Promotion image",
+            "name": "promotion_image",
+            "type": "image",
+            "instructions": "This image will take over the homepage and the visitor will need to click on it to see any of the site pages.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "acfe_permissions": "",
+            "acfe_uploader": "wp",
+            "acfe_thumbnail": 1,
+            "return_format": "array",
+            "preview_size": "medium",
+            "library": "all",
+            "min_width": "",
+            "min_height": "",
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": ""
+        },
+        {
+            "key": "field_5f9d98caf5244",
+            "label": "The target page",
+            "name": "the_target_page",
+            "type": "page_link",
+            "instructions": "Choose the page where the visitor will be taken once they click the link",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "acfe_permissions": "",
+            "post_type": [
+                "page",
+                "channel",
+                "post"
+            ],
+            "taxonomy": "",
+            "allow_null": 0,
+            "allow_archives": 1,
+            "multiple": 0,
+            "show_column": 0,
+            "show_column_weight": 1000
+        },
+        {
+            "key": "field_5f9d9912f7e1f",
+            "label": "Is this promotion active?",
+            "name": "is_this_promotion_active",
+            "type": "true_false",
+            "instructions": "Tick this box to make the promotion take over active on the website",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "acfe_permissions": "",
+            "message": "",
+            "default_value": 0,
+            "ui": 0,
+            "ui_on_text": "",
+            "ui_off_text": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "options_page",
+                "operator": "==",
+                "value": "promotions"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "left",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "acfe_display_title": "",
+    "acfe_autosync": [
+        "json"
+    ],
+    "acfe_permissions": "",
+    "acfe_form": 0,
+    "acfe_meta": "",
+    "acfe_note": "",
+    "modified": 1604163991
+}
