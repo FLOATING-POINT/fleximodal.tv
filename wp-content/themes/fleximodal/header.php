@@ -22,6 +22,22 @@
 
 		<?php wp_head(); ?>
 
+		<script async custom-element="amp-analytics" src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script>
+		<amp-analytics type="gtag" data-credentials="include">
+		<script type="application/json">
+		{
+		  "vars" : {
+		    "gtag_id": "UA-38226994-8",
+		    "config" : {
+		      "UA-38226994-8": { "groups": "default" }
+		    }
+		  }
+		}
+		</script>
+		</amp-analytics>
+
+
+
 	</head>
 
 	<body <?php body_class(); ?>>

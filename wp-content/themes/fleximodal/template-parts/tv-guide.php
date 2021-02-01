@@ -39,8 +39,7 @@
 	    	$playlist_duration_ts 	= 0;
 
 	    	if($channel_id != -1 ) $num_channels++;	
-	    	//$channels[] = [];	    	
-	    	//if($channel_id  < 5) array_push($channels, []);
+
 
 	    	if( have_rows('channel_playlists') ):
 
@@ -187,14 +186,12 @@
 					
 			<div class="live">
 				<div class="type">ON NOW! ON NOW! ON NOW!</div>
-			
 				
 					<a href="<?php echo  $channel[$i][$start_id][4]; ?>" class="<?php echo $channels_all[$i][$start_id][6]; ?>">
 						<div class="t"><?php echo $channels_all[$i][$start_id][1]; ?></div><?php //title ?>
 						<div class="bt"><div>START</div><div><?php echo $channels_all[$i][$start_id][2]; ?></div></div><?php //broadcast date ?>
 						<div class="bd"><div>DURATION</div><div><?php echo $channels_all[$i][$start_id][3]; ?></div></div> <?php //broadcast duration ?>
 					</a>
-				
 			
 			</div>
 			<div class="future">

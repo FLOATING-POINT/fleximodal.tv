@@ -2,9 +2,10 @@
  * All of the CSS for your public-facing functionality should be
  * included in this file.
  */
- a.docs-single-cat-wrap:hover,.docs-single-cat-wrap a:hover {
-   text-decoration: none;
- }
+a.docs-single-cat-wrap:hover,
+.docs-single-cat-wrap a:hover {
+  text-decoration: none;
+}
 .betterdocs-wraper .betterdocs-archive-wrap {
   width: 100%;
   max-width: 1400px;
@@ -87,6 +88,7 @@
   list-style: none;
   max-height: 400px;
   overflow-y: scroll;
+  z-index: 999;
 }
 .betterdocs-live-search .docs-search-result li {
   border-bottom: 1px solid #f5f5f5;
@@ -99,7 +101,7 @@
   width: 80px;
 }
 .betterdocs-live-search .docs-search-result li span {
-  font-size: .8em;
+  font-size: 0.8em;
   color: #444b54;
 }
 .betterdocs-live-search .docs-search-result li:hover {
@@ -189,7 +191,7 @@
 }
 .betterdocs-full-sidebar-left .betterdocs-categories-wrap .docs-single-cat-wrap,
 .betterdocs-sidebar-content .betterdocs-categories-wrap .docs-single-cat-wrap {
-	border-radius: 0 !important;
+  border-radius: 0 !important;
 }
 .betterdocs-categories-wrap.layout-flex .docs-single-cat-wrap {
   flex: 1 1 30%;
@@ -227,7 +229,7 @@
   padding: 0;
 }
 .betterdocs-categories-wrap .docs-single-cat-wrap {
-  box-shadow: 0 10px 100px 0 rgba(40,47,98,.08);
+  box-shadow: 0 10px 100px 0 rgba(40, 47, 98, 0.08);
 }
 .betterdocs-categories-wrap .docs-single-cat-wrap .docs-cat-title-wrap {
   padding: 20px 20px 0 20px;
@@ -311,6 +313,15 @@
   display: none;
   margin-left: 20px;
 }
+.elementor-element-edit-mode
+  .docs-listing-main
+  .docs-category-listing
+  .docs-list
+  ul
+  li
+  .docs-sub-cat {
+  display: block;
+}
 .betterdocs-categories-wrap .docs-item-container .docs-sub-cat.current-sub-cat {
   display: block;
 }
@@ -326,7 +337,7 @@
   float: left;
   margin-top: 6px;
 }
-.docs-sub-cat-title svg {
+.docs-category-listing .docs-list ul li .docs-sub-cat-title svg {
   margin-top: 0;
 }
 .docs-sub-cat-title svg.arrow-down {
@@ -349,7 +360,11 @@
 .tax-doc_category .docs-category-listing .docs-cat-title {
   display: block;
 }
-.tax-doc_category .betterdocs-category-wraper .docs-category-listing .docs-cat-title p {
+.tax-doc_category
+  .betterdocs-category-wraper
+  .docs-category-listing
+  .docs-cat-title
+  p {
   line-height: 1.5;
 }
 /* Sidebar */
@@ -396,7 +411,7 @@
   padding: 50px 0;
 }
 .betterdocs-sidebar-content .betterdocs-categories-wrap {
-	overflow: auto;
+  overflow: auto;
 }
 .betterdocs-sidebar-content .betterdocs-categories-wrap li a {
   font-size: 14px;
@@ -455,11 +470,17 @@
   font-size: 1em;
   line-height: 2;
   transition: all 0.3s;
+  outline: none;
 }
 .docs-category-listing .docs-list ul li a:hover {
   color: #528ffe;
 }
-.betterdocs-single-layout3 .betterdocs-sidebar-content .betterdocs-categories-wrap .docs-item-container li svg {
+.betterdocs-single-layout3
+  .betterdocs-sidebar-content
+  .betterdocs-categories-wrap
+  .docs-item-container
+  li
+  svg {
   display: none;
 }
 .docs-category-listing .betterdocs-breadcrumb {
@@ -499,13 +520,14 @@
 .betterdocs-entry-content .betterdocs-toc {
   min-width: 250px;
 }
-.betterdocs-single-layout1 .sticky-toc-container .betterdocs-toc{
-  max-height:70vh;
-  overflow-y: scroll
+.betterdocs-el-single-sidebar .sticky-toc-container .betterdocs-toc,
+.betterdocs-single-layout1 .sticky-toc-container .betterdocs-toc {
+  max-height: 70vh;
+  overflow-y: scroll;
 }
 .betterdocs-toc > .toc-title {
   color: #3f5876;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: bold;
   margin: 0;
   display: block;
@@ -515,14 +537,11 @@
   margin: 0;
   padding: 0 0 0 10px;
 }
-.betterdocs-toc ul.betterdocs-hierarchial-toc, 
+.betterdocs-toc ul.betterdocs-hierarchial-toc,
 .betterdocs-toc ul.betterdocs-hierarchial-toc ul {
   counter-reset: item;
 }
 .betterdocs-toc > ul {
-  padding-left: 0;
-}
-.betterdocs-full-sidebar-right .betterdocs-toc ul ul{
   padding-left: 0;
 }
 .betterdocs-toc .toc-list li {
@@ -542,7 +561,10 @@
   word-break: normal;
   line-height: 1.9em;
 }
-.betterdocs-toc .toc-list.betterdocs-hierarchial-toc li a::before {
+.betterdocs-toc.toc-list-number
+  .toc-list.betterdocs-hierarchial-toc
+  li
+  a::before {
   content: counters(item, ".") ". ";
   counter-increment: item;
 }
@@ -576,7 +598,7 @@
   display: block;
   z-index: 2;
 }
-.sticky-toc-container .betterdocs-toc{
+.sticky-toc-container .betterdocs-toc {
   width: 100%;
 }
 .sticky-toc-container .betterdocs-toc .toc-list li {
@@ -608,12 +630,14 @@ a.close-toc {
   text-decoration: none;
 }
 
-.betterdocs-categories-wrap.betterdocs-category-box .docs-single-cat-wrap:hover {
+.betterdocs-categories-wrap.betterdocs-category-box
+  .docs-single-cat-wrap:hover {
   box-shadow: 0px 20px 50px 0px rgba(0, 9, 78, 0.1);
   text-decoration: none;
 }
 
-.betterdocs-categories-wrap.betterdocs-category-box .docs-single-cat-wrap:hover {
+.betterdocs-categories-wrap.betterdocs-category-box
+  .docs-single-cat-wrap:hover {
   text-decoration: none;
 }
 
@@ -646,7 +670,7 @@ a.close-toc {
   display: none;
 }
 /* Breadcrumbs */
-.betterdocs-breadcrumb {
+.docs-single-main .betterdocs-breadcrumb {
   margin-bottom: 20px;
 }
 .betterdocs-breadcrumb .betterdocs-breadcrumb-list {
@@ -708,10 +732,10 @@ a.close-toc {
 .betterdocs-content-heading a {
   display: none;
   line-height: 1;
-} 
+}
 .betterdocs-content-heading:hover a {
   display: inline-block;
-} 
+}
 .betterdocs-single-wraper .betterdocs-content-area {
   display: flex;
   width: 100%;
@@ -901,7 +925,7 @@ a.close-toc {
   margin-left: -44px;
   opacity: 0;
   transition: opacity 0.3s;
-  font-size: .9rem;
+  font-size: 0.9rem;
   font-weight: normal;
 }
 
@@ -921,9 +945,9 @@ a.close-toc {
   opacity: 1;
 }
 
-.betterdocs-single-wraper .betterdocs-content .anchor{
+.betterdocs-single-wraper .betterdocs-content .anchor {
   margin-left: 5px;
-  font-size: .9em;
+  font-size: 0.9em;
 }
 
 @media only screen and (max-width: 670px) {
@@ -969,13 +993,13 @@ a.close-toc {
   margin-top: -15px;
 }
 .betterdocs-print-btn {
-    background-color: #fafafa;
-    padding: 6px;
-    border-radius: 5px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
+  background-color: #fafafa;
+  padding: 6px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
 }
 .betterdocs-article-reactions h5 {
   display: inline-block;
@@ -1014,21 +1038,23 @@ a.close-toc {
 .betterdocs-article-reaction-links li a svg {
   width: 15px;
   height: 15px;
+}
+.betterdocs-article-reaction-links li a svg path {
   fill: #fff;
 }
-.betterdocs-article-reaction-links li a:hover svg {
+.betterdocs-article-reaction-links li a:hover svg path {
   fill: #19ca9e;
 }
 .betterdocs-article-reactions,
 .betterdocs-social-share {
   display: flex;
-	flex-flow: row wrap;
+  flex-flow: row wrap;
 }
 .betterdocs-article-reactions {
-	padding: 2em;
+  padding: 2em;
   background-color: #fff;
   border-radius: 5px;
-	justify-content: space-between;
+  justify-content: space-between;
 }
 .betterdocs-social-share .betterdocs-social-share-heading,
 .betterdocs-article-reactions .betterdocs-article-reactions-heading {
@@ -1044,14 +1070,16 @@ a.close-toc {
 }
 .betterdocs-social-share .betterdocs-social-share-heading {
   margin-right: 10px;
+  display: flex;
+  align-items: center;
 }
 .betterdocs-social-share-links {
-	padding: 0;
-	margin: 0;
-	flex: 0 0 auto;
-	text-align: center;
-	display: flex;
-	justify-content: space-around;
+  padding: 0;
+  margin: 0;
+  flex: 0 0 auto;
+  text-align: center;
+  display: flex;
+  justify-content: space-around;
 }
 .betterdocs-social-share-links li {
   list-style: none;
@@ -1062,12 +1090,12 @@ a.close-toc {
 }
 .betterdocs-social-share-links li a {
   display: inline-block;
-  color: #F56A6A;
-  -webkit-transition: all .3s;
-  -moz-transition: all .3s;
-  transition: all .3s;	
+  color: #f56a6a;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  transition: all 0.3s;
 }
-.betterdocs-social-share-links li a img{
+.betterdocs-social-share-links li a img {
   height: 30px;
   width: 30px;
 }
@@ -1078,11 +1106,11 @@ a.close-toc {
   overflow-x: scroll;
 }
 .betterdocs-entry-content pre {
- white-space: pre-wrap;       /* css-3 */
- white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
- white-space: -pre-wrap;      /* Opera 4-6 */
- white-space: -o-pre-wrap;    /* Opera 7 */
- word-wrap: break-word;       /* Internet Explorer 5.5+ */
+  white-space: pre-wrap; /* css-3 */
+  white-space: -moz-pre-wrap; /* Mozilla, since 1999 */
+  white-space: -pre-wrap; /* Opera 4-6 */
+  white-space: -o-pre-wrap; /* Opera 7 */
+  word-wrap: break-word; /* Internet Explorer 5.5+ */
 }
 .cat-list-arrow-down {
   display: none;
@@ -1092,8 +1120,8 @@ a.close-toc {
 
 body.single-docs .site-content > .ast-container,
 .archive.post-type-archive-docs .site-content > .ast-container,
-.archive.tax-doc_category  .site-content > .ast-container,
-.archive.tax-doc_tag  .site-content > .ast-container {
+.archive.tax-doc_category .site-content > .ast-container,
+.archive.tax-doc_tag .site-content > .ast-container {
   max-width: none;
   padding: 0;
 }
@@ -1104,11 +1132,12 @@ body.single-docs .site-content > .ast-container,
   #betterdocs-sidebar {
     display: none;
   }
-  .sticky-toc-container, .betterdocs-print-pdf {
+  .sticky-toc-container,
+  .betterdocs-print-pdf {
     display: none;
   }
   .betterdocs-sidebar-content .docs-item-container {
-      padding: 5px;
+    padding: 5px;
   }
 }
 @media only screen and (max-width: 767px) {

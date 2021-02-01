@@ -7,18 +7,34 @@ if(!class_exists('acfe_enqueue')):
 
 class acfe_enqueue{
     
-    var $suffix = '';
-    var $version = '';
-    
     function __construct(){
-    
-        // Vars
-        $this->suffix = defined('SCRIPT_DEBUG') && SCRIPT_DEBUG ? '' : '.min';
-        $this->version = ACFE_VERSION;
         
         // Hooks
-        add_action('admin_enqueue_scripts', array($this, 'admin_enqueue'));
-        add_action('acf/input/admin_enqueue_scripts', array($this, 'acf_enqueue'));
+        add_action('init',                              array($this, 'register_assets'));
+        add_action('admin_enqueue_scripts',             array($this, 'admin_enqueue'));
+        add_action('acf/input/admin_enqueue_scripts',   array($this, 'acf_enqueue'));
+        
+    }
+    
+    function register_assets(){
+    
+        $version = ACFE_VERSION;
+        $min = defined('SCRIPT_DEBUG') && SCRIPT_DEBUG ? '' : '.min';
+    
+        // register scripts
+        wp_register_script('acf-extended',              acfe_get_url("assets/js/acfe{$min}.js"),                array('acf-input'),         $version);
+        wp_register_script('acf-extended-input',        acfe_get_url("assets/js/acfe-input{$min}.js"),          array('acf-extended'),      $version);
+        wp_register_script('acf-extended-admin',        acfe_get_url("assets/js/acfe-admin{$min}.js"),          array('acf-extended'),      $version);
+        wp_register_script('acf-extended-field-group',  acfe_get_url("assets/js/acfe-field-group{$min}.js"),    array('acf-field-group'),   $version);
+        wp_register_script('acf-extended-ui',           acfe_get_url("assets/js/acfe-ui{$min}.js"),             array('acf-extended'),      $version);
+    
+        // register styles
+        wp_register_style('acf-extended',               acfe_get_url("assets/css/acfe{$min}.css"),              array(),                    $version);
+        wp_register_style('acf-extended-input',         acfe_get_url("assets/css/acfe-input{$min}.css"),        array(),                    $version);
+        wp_register_style('acf-extended-admin',         acfe_get_url("assets/css/acfe-admin{$min}.css"),        array(),                    $version);
+        wp_register_style('acf-extended-field-group',   acfe_get_url("assets/css/acfe-field-group{$min}.css"),  array(),                    $version);
+        wp_register_style('acf-extended-ui',            acfe_get_url("assets/css/acfe-ui{$min}.css"),           array(),                    $version);
+        
     }
     
     /**
@@ -26,14 +42,14 @@ class acfe_enqueue{
      */
     function admin_enqueue(){
     
-        // ACF Extended: Admin
-        wp_enqueue_style('acf-extended-admin', acfe_get_url('assets/acf-extended-admin' . $this->suffix . '.css'), false, $this->version);
+        // Admin
+        wp_enqueue_style('acf-extended-admin');
+    
+        // Field Group
+        if(acf_is_screen(array('edit-acf-field-group', 'acf-field-group'))){
         
-        // ACF Extended: UI
-        if(acf_get_setting('acfe/modules/ui') && $this->is_screen_ui()){
-            
-            wp_enqueue_style('acf-extended-ui', acfe_get_url('assets/acf-extended-ui' . $this->suffix . '.css'), false, $this->version);
-            
+            wp_enqueue_style('acf-extended-field-group');
+        
         }
         
     }
@@ -43,64 +59,46 @@ class acfe_enqueue{
      */
     function acf_enqueue(){
         
-        // ACF Extended
-        wp_enqueue_style('acf-extended', acfe_get_url('assets/acf-extended' . $this->suffix . '.css'), false, $this->version);
-        wp_enqueue_script('acf-extended', acfe_get_url('assets/acf-extended' . $this->suffix . '.js'), array('jquery'), $this->version);
+        // Global
+        wp_enqueue_style('acf-extended');
+        wp_enqueue_script('acf-extended');
     
-        // ACF Extended: Admin
-        if($this->is_screen_admin()){
+        // Input
+        wp_enqueue_style('acf-extended-input');
+        wp_enqueue_script('acf-extended-input');
+    
+        // Admin
+        if(is_admin()){
+    
+            wp_enqueue_script('acf-extended-admin');
             
-            wp_enqueue_script('acf-extended-admin', acfe_get_url('assets/acf-extended-admin' . $this->suffix . '.js'), array('jquery'), $this->version);
+        }
+    
+        // Field Group
+        if(acf_is_screen(array('acf-field-group'))){
             
+            wp_enqueue_script('acf-extended-field-group');
+        
         }
         
         acf_localize_data(array(
-            'is_admin' => is_admin()
+            'acfe_version' => ACFE_VERSION,
+            'acfe' => array(
+                'home_url'          => home_url(),
+                'is_admin'          => is_admin(),
+                'is_user_logged_in' => is_user_logged_in(),
+            )
         ));
+        
+        $read_more = __('Read more...');
+        $read_more = str_replace('…', '', $read_more);
+        $read_more = str_replace('...', '', $read_more);
         
         acf_localize_text(array(
-            'Close'	=> __('Close', 'acf'),
+            'Close'     => __('Close', 'acf'),
+            'Read more' => $read_more,
         ));
         
-    }
-    
-    function is_screen_admin(){
-        
-        return acf_is_screen(array('edit-acf-field-group', 'acf-field-group'));
-        
-    }
-    
-    function is_screen_ui(){
-        
-        return $this->is_screen(array('edit-tags', 'term', 'profile', 'user-edit', 'user', 'options-general', 'options-writing', 'options-reading', 'options-discussion', 'options-media', 'options-permalink'));
-        
-    }
-    
-    function is_screen($id = ''){
-    
-        // bail early if not defined
-        if(!function_exists('get_current_screen'))
-            return false;
-    
-        // vars
-        $current_screen = get_current_screen();
-    
-        // no screen
-        if(!$current_screen){
-            
-            return false;
-        
-        // array
-        }elseif(is_array($id)){
-            
-            return in_array($current_screen->base, $id);
-        
-        // string
-        }else{
-            
-            return ($id === $current_screen->base);
-            
-        }
     }
     
 }

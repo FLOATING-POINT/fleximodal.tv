@@ -3,8 +3,8 @@ Contributors: wpdevteam, re_enter_rupok, asif2bd, emsohel, priyomukul, manzuraha
 Donate link: https://wpdeveloper.net
 Tags:  knowledge base, docs, documentation, documents, wiki, faq page, doc, knowledge, table of content, TOC, knowledgebase, faqs, doc page, best documentation plugin, support ticket, customer support, instant answer bot, bot, help articles
 Requires at least: 4.0
-Tested up to: 5.5
-Stable tag: 1.4.3
+Tested up to: 5.6
+Stable tag: 1.6.0
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -36,6 +36,7 @@ Let the visitors instantly find the answers they are searching without having to
 - Auto Table of Content or Sticky TOC to provide absolute user experience
 - In-built advanced live search will help visitors to get the exact docs solution
 - Integrated with Analytics to track and evaluate the performance
+- 100% Compatibility with Elementor Page Builder
 
 ## 🙌 STUNNING READY TEMPLATES FOR DOCS LANDING PAGE ## 
 
@@ -55,6 +56,18 @@ Assist your visitors to get the exact docs solution and reduce dependency on sup
 
 Customize documentation pages from setting or even add shortcode (PRO), page builder widgets and more to get full authority to make it stand out for your web visitors.
 
+## 💯 100% COMPATIBILITY WITH ELEMENTOR PAGE BUILDER ##
+
+Design amazing single docs and docs archive page without any hassle with Elementor Page Builder
+
+## 🔥 SINGLE DOC TEMPLATE WITH ELEMENTOR ##
+
+Show off your creativity and create an amazing single doc template with Elementor Theme Builder
+
+## 🚀 DOCS ARCHIVE TEMPLATE WITH ELEMENTOR ##
+
+Design stunning Docs page and Docs Category archive template with Elementor Theme Builder
+
 ## 🤖 INSTANT ANSWER BOT TO REDUCE SUPPORT TICKETS (PRO) ## 
 
 Help your customers browse the docs and knowledge base articles right from the chat window without leaving the page and reduce the support tickets.
@@ -63,6 +76,18 @@ Help your customers browse the docs and knowledge base articles right from the c
 ## 📊 INSIGHTFUL ANALYTICS TO EVALUATE PERFORMANCE (PRO) ##
 
 Track and evaluate activities on your documentation page and improve customer experience. Also, analyze the site traffic to get insights about your Knowledge Base.
+
+## 🆕 CREATE MULTIPLE KNOWLEDGE BASE (PRO) ##
+
+Got multiple products? You can easily create multiple knowledge-bases for your different products and provide instant support to your customers from one place
+
+You don’t have to just take our word for it. See what one of the WordPress experts are saying:
+
+> - Sweet solution for adding a knowledge base to your website.
+> - Visit /docs to view the built-in page (URL is changeable in settings)
+> - Easy to create and manage with beautiful layouts and powerful search.
+
+> -Nathan, iThemes
 
 🙌 After reading this feature list, you can probably imagine BetterDocs is the most advanced and powerful documentation plugin in the market. Give BetterDocs a try.
 
@@ -121,6 +146,53 @@ Yes, it will work with any standard WordPress theme.
 
 
 == Changelog ==
+
+= 1.6.0 - 26/01/2021 =
+- Added: Docs Archive Template with Elementor Theme Builder
+- Improved: Security update for Single Doc Email Feedback
+- Few minor bug fix and improvements
+
+= 1.5.7 - 03/01/2021 =
+- Fixed: Table of Contents not collapsing on small devices
+- Few minor bug fix and improvements
+
+= 1.5.6 - 24/12/2020 =
+- Added: Multi-level Sub-category option
+- Fixed: Missing Sub-Category style controls for Archive page
+- Fixed: 'Category Item Counter' font size not working
+- Few minor bug fix and improvements
+
+= 1.5.5 - 10/12/2020 =
+- Added: 'Custom Permalink' structure
+- Fixed: Incompatibility issues with BuddyBoss theme
+- Fixed: 'Explore More' button not displaying in Docs page
+- Few minor bug fix and improvements
+
+= 1.5.4 - 24/11/2020 =
+- Few minor bug fix and improvements
+
+= 1.5.3 - 24/11/2020 =
+- Fixed: 'Preview could not be loaded' error with Elementor
+- Fixed: Embedded videos not showing in Single docs
+- Fixed: Shortcodes not appearing properly in Single docs
+- Few minor bug fix and improvements
+
+= 1.5.2 - 19/11/2020 =
+- Fixed: Table of Contents issue with Elementor Theme Builder
+- Fixed: Print option not working for Single Docs built with Elementor Theme Builder
+- Few minor bug fix and improvements
+
+= 1.5.1 - 17/11/2020 =
+- Fixed: Third-party shortcode not working
+- Fixed: PHP Notice for Elementor Single Docs
+- Few minor bug fix and improvements
+
+= 1.5.0 - 16/11/2020 =
+- Added: Pre-made Elementor Blocks for Single Docs
+- Added: Table of Contents widget for Elementor Theme Builder
+- Added: New Sidebar layouts for Elementor Theme Builder
+- Fixed: Style Control missing when Shortcode is used
+- Few minor bug fix and improvements
 
 = 1.4.3 - 15/10/2020 =
 - Fixed: Layout preview not showing properly inside Customizer

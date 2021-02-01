@@ -15,37 +15,41 @@
 
 <article <?php post_class(); ?> id="channel">
 
+	<div class="loader">
+		<div class="inner">
+			<div class="p1"></div>
+			<div class="p2"></div>
+			<div class="p3"></div>
+			<div class="p4"></div>
+			<div class="p5"></div>
+		</div>
+	</div>
 	
 	<div class="tv-guide">
-		<div class="mb mb-close-btn">CLOSE</div>
+		<div class="mb-close-btn">CLOSE</div>
 		<div class="inner">
 
 		<?php get_template_part('template-parts/tv-guide'); ?>
 		</div>
 	</div>
-	<div class="schedule">
-		<div class="mb mb-close-btn">CLOSE</div>
-		<div class="inner">
-		<?php get_template_part('template-parts/schedule'); ?>
+	<div class="schedule" id="schedule">
+		<div class="mb-close-btn">CLOSE</div>
+		<div class="inner"><section></section>
+		<?php //this is loaded via ajax from tv-guide.php ?>
+		</div>
+	</div>
+	<div class="schedule" id="on-demand-schedule">
+		<div class="mb-close-btn">CLOSE</div>
+		<div class="inner"><section></section>
+		<?php //this is loaded via ajax from tv-guide.php ?>
 		</div>
 	</div>
 	<?php get_template_part('template-parts/about'); ?>
 
 	<div class="fm-logo-back"></div>
-	<div class="channel-controls">
-		<div>
-			<div class="schedule-btn"><div class="btn">Schedule</div></div>
 
-			<div class="partners">
-				<div><a href="https://www.wigflex.com/">Wigflex</a></div>
-				<div class="red dot"></div>
-				<div><a href="https://multimodal.live/">Multimodal</a></div>
-			</div>			
-			<div class="fullscreen-btn"><div class="btn">Fullscreen</div></div>
-		</div>
-	</div>
 
-	
+	<?php get_template_part('template-parts/channel-controls'); ?>	
 
 	<div class="section-inner" id="content">
 
@@ -63,7 +67,7 @@
 			</div>
 		</div>		
 
-		<div id="iframe-youtube-player" ></div>	
+		<div id="iframe-youtube-player" ></div>
 
 		<?php
 
@@ -181,8 +185,6 @@
 
 			if(empty($youtube_url)){ // looping playlists
 
-				//echo 'empty url time now '.$date_now_ts->getTimestamp().'<br />';
-				//echo 'empty url recurring_start_time_ts '.$recurring_start_time_ts.'<br />';
 
 				while($recurring_start_time_ts < $date_now_ts){			
 					
@@ -201,17 +203,9 @@
 
 				}				
 
-				/*echo 'recurring_start_time_ts date '.$youtube_id.' '.date("d.m.Y H:i:s", $recurring_start_time_ts).'<br />';
-			   	echo 'start_secs '.$youtube_id.' '.$start_secs.'<br />';
-			   	echo 'end_secs '.$youtube_id.' '.$end_secs.'<br />';
-			   	echo 'youtube_url '.$youtube_id.' '.$youtube_url.'<br />';*/
-	
+			}	?>
 
-			}
-
-	?>
-
-
+		<amp-script layout="container">
 	      <script>
 
 	      	(function($){	
@@ -264,8 +258,11 @@
 				            'onReady': onPlayerReady,
 				            'onStateChange': onPlayerStateChange
 				          }
-				        }); 				       
-				      }
+				        }); 				        
+				        
+				     }		   
+
+
 
 				      window.setTicker = function(){
 
@@ -288,7 +285,6 @@
 				     
 
 				    window.playNextVideo = function(){
-
 				      	//
 				      	var start_secs = 0;
 				      	var end_secs = -1;
@@ -398,105 +394,8 @@
 						}	
 
 					});
-					window.hideAbout = function(){
- 						$('.aboutFMTV').css('display','none');
- 						$('.btn.about').removeClass('active');
- 						
- 						$(document).scrollTop(0);
-					}
-					window.hideTVGuide = function(){
-						$('.tv-guide').css('display','none');
-						$('.tv-guide-btn').removeClass('active');
-						$(document).scrollTop(0);
-					}
-					window.hideSchedule = function(){
-						$('.schedule').css('display','none');
-						$('.schedule-btn').removeClass('active');
-						$(document).scrollTop(0);
-					}
-					$('.logo-pause > div:first-child').click(function(){
-						$('.logo-pause').css({'visibility':'hidden'});
-						//player.playVideo();
-						player.unMute();
-					});
 
-					$('.tv-guide-btn').click(function(){
-
-						if ( $('.tv-guide').css('display') == 'none' ){
-
-							$('.tv-guide').css('display','block');		
-							$('.tv-guide-btn').addClass('active');					 
-
-							var request = $.ajax({
-							  url: ajaxurl,
-							  type: "POST",
-							  data: {action: 'get_tv_guide'},
-							  dataType: "html",
-							   success: function(html){
-								    $( ".tv-guide .inner .channels" ).replaceWith(html);
-						    	
-
-								  }
-							});					    
-
-						    
-							hideAbout();
-							hideSchedule();
-						 } else{
-						    $('.tv-guide').css('display','none');
-						    $('.tv-guide-btn').removeClass('active');
-						}
-						
-					});		
-
-					$('.btn.about').click(function(){
-
-						if ( $('.aboutFMTV').css('display') == 'none' ){
-						    $('.aboutFMTV').css('display','block');
-						    $('.btn.about').addClass('active');
-						    
-							hideTVGuide();
-							hideSchedule();
-						 } else{
-						    $('.aboutFMTV').css('display','none');
-						    $('.btn.about').removeClass('active');
-						}
-						
-					});	
-
-					$('.schedule-btn').click(function(){
-
-						if ( $('.schedule').css('display') == 'none' ){
-
-							$('.schedule-btn').addClass('active');
-
-							var request = $.ajax({
-							url: ajaxurl,
-							type: "POST",
-						    data: {action: 'get_schedule', pid:<?php echo get_the_ID();?>},
-							  dataType: "html",
-							   success: function(html){
-								    $( ".schedule .inner section" ).replaceWith(html);
-						    		$('.schedule').css('display','block');
-						    		
-
-								  }
-							});	
-
-							hideTVGuide();
-							hideAbout();
-						  } else{
-						    $('.schedule').css('display','none');
-						    $('.schedule-btn').removeClass('active');
-						}
-						
-					});		   
-
-					$('.mb-close-btn').click(function(){
-						hideTVGuide();
-						hideAbout();
-						hideSchedule();
-					});
+					<?php include_once(get_template_directory().'/template-parts/tv-js.js'); ?>
 
 			});
 
@@ -508,7 +407,7 @@
 
 				$('.logo-pause > div').css({'margin-top':m_t+'px', 'margin-left':m_l+'px'});
 
-				setTimeout(function(){	$('#iframe-youtube-player').css({'width':'110%'}); }, 100);
+				setTimeout(function(){	$('#iframe-youtube-player').css({'width':'120%'}); }, 100);
 
 				var h = $(window).height() - $('.fm-logo-menu').outerHeight();
 				$('nav div.mb').height(h);
@@ -548,12 +447,6 @@
 		    }
 
 			})(jQuery);
-
-
-
-		    </script>
-
-
+		</script>
 	</div>
-
 </article>

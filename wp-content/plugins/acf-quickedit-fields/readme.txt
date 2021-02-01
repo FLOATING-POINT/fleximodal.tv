@@ -3,9 +3,9 @@ Contributors: podpirate
 Donate link: https://www.msf.org/donate
 Tags: acf, quickedit, columns, bulk edit
 Requires at least: 4.7
-Tested up to: 5.5
+Tested up to: 5.6
 Requires PHP: 5.6
-Stable tag: 3.1.1
+Stable tag: 3.1.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -84,6 +84,14 @@ Please post an issue in the [GitHub-Repository](https://github.com/mcguffin/acf-
 On the whole upgrading is always a good idea.
 
 == Changelog ==
+
+= 3.1.2 =
+ - Fix: QuickEdit Taxonomy checkboxes looking weird
+ - Fix: BulkEdit grouped fields didn't pass validation
+ - Tested with WP 5.6 / jQuery 3
+
+= 3.1.1 =
+ - Fix: Group subfields sometimes not displaying
 
 = 3.1.0 =
  - Feature: Ajax load terms in Taxonomy Field

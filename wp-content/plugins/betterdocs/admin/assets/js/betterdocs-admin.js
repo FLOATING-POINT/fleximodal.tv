@@ -129,8 +129,31 @@
 			e.preventDefault();
 			$.betterdocsAdmin.resetSection(this);
 		});
+
+		$.betterdocsAdmin.permalink_structure();
+		$('#permalink_structure').on('change', $.betterdocsAdmin.permalink_structure);
+		$('#multiple_kb').on('change', function(){
+			var kb = $('.permalink-structure .available-structure-tags .knowledge-base');
+			var multiple_kb = $(this);
+			if(multiple_kb.is(':checked')){
+				kb.show();
+			}
+			else{
+				kb.hide();
+			}
+			$.betterdocsAdmin.permalink_structure();
+		});
 	};
 
+	$.betterdocsAdmin.permalink_structure = function(){
+		var multiple_kb = $('#multiple_kb');
+		var permalink_structure = $('#permalink_structure');
+		var $val = permalink_structure.val();
+		if($val && !multiple_kb.is(':checked')){
+			permalink_structure.val($val.replace(/%knowledge_base%\/?/g, ''));
+		}
+	}
+	
 	$.betterdocsAdmin.initializeFields = function () {
 		$.betterdocsAdmin.innerTab();
 		if (

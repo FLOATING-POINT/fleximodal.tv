@@ -23,6 +23,8 @@
 		        return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Windows() || isMobile.iPad());
 		    }
 		};
+
+		
 	    
 	});
 

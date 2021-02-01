@@ -77,23 +77,6 @@ class BetterDocs_Elementor_Title extends Widget_Base {
         );
 
         $this->add_control(
-            'size',
-            [
-                'label'   => __('Size', 'betterdocs'),
-                'type'    => Controls_Manager::SELECT,
-                'default' => 'default',
-                'options' => [
-                    'default' => __('Default', 'betterdocs'),
-                    'small'   => __('Small', 'betterdocs'),
-                    'medium'  => __('Medium', 'betterdocs'),
-                    'large'   => __('Large', 'betterdocs'),
-                    'xl'      => __('XL', 'betterdocs'),
-                    'xxl'     => __('XXL', 'betterdocs'),
-                ],
-            ]
-        );
-
-        $this->add_control(
             'header_size',
             [
                 'label'   => __('HTML Tag', 'betterdocs'),
@@ -172,7 +155,7 @@ class BetterDocs_Elementor_Title extends Widget_Base {
                     'value' => Schemes\Color::COLOR_1,
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .elementor-heading-title' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .elementor-heading-title, .elementor-heading-title a' => 'color: {{VALUE}};',
                 ],
             ]
         );
@@ -182,7 +165,7 @@ class BetterDocs_Elementor_Title extends Widget_Base {
             [
                 'name'     => 'typography',
                 'scheme'   => Schemes\Typography::TYPOGRAPHY_1,
-                'selector' => '{{WRAPPER}} .elementor-heading-title',
+                'selector' => '{{WRAPPER}} .elementor-heading-title, .elementor-heading-title a',
             ]
         );
 
@@ -243,16 +226,12 @@ class BetterDocs_Elementor_Title extends Widget_Base {
         );
     }
 
-    protected function render () {
-
+    protected function render() {
+        $this->add_render_attribute('title', 'id', ['betterdocs-entry-title']);
         $this->add_render_attribute('title', 'class', ['product_title', 'entry-title']);
         $settings = $this->get_settings_for_display();
 
         $this->add_render_attribute('title', 'class', 'elementor-heading-title');
-
-        if (!empty($settings['size'])) {
-            $this->add_render_attribute('title', 'class', 'elementor-size-'.$settings['size']);
-        }
 
         $this->add_inline_editing_attributes('title');
 

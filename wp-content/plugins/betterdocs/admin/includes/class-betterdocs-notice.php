@@ -272,6 +272,10 @@ class BetterDocs_Notice {
                         $later_time = $this->makeTime( $this->timestamp,  $this->maybe_later_time );
                         break;
 
+                    case 'update_10kuser' :
+                        $dismiss = ( isset( $plugin_action ) ) ? $plugin_action : false ;
+                        $later = false;
+                        break;
                     case 'update' :
                         $dismiss = ( isset( $plugin_action ) ) ? $plugin_action : false ;
                         $later_time = $this->makeTime( $this->timestamp,  $this->maybe_later_time );
@@ -336,7 +340,7 @@ class BetterDocs_Notice {
             $classes .= 'notice-has-thumbnail';
         }
 
-        echo '<div class="'. $classes .' wpdeveloper-'. $current_notice .'-notice">';
+        echo '<div class="'. $classes .' wpdeveloper-'. $current_notice .'-notice" data-notice="'. $current_notice .'">';
     }
     /**
      * After Notice
@@ -368,6 +372,11 @@ class BetterDocs_Notice {
                 do_action( 'wpdeveloper_update_notice_for_' . $this->plugin_name );
                 $this->get_thumbnail( 'update' );
                 $this->get_message( 'update' );
+                $this->dismiss_button_scripts();
+                break;
+            case 'update_10kuser' :
+                do_action( 'wpdeveloper_update_10kuser_notice_for_' . $this->plugin_name );
+                $this->get_message( 'update_10kuser' );
                 $this->dismiss_button_scripts();
                 break;
             case 'review' :
@@ -788,31 +797,30 @@ class BetterDocs_Notice {
         <script type="text/javascript">
             jQuery(document).ready( function($) {
                 if( $('.notice').length > 0 ) {
-                    if( $('.notice').find('.notice-dismiss').length > 0 ) {
-                        $('.notice').on('click', 'button.notice-dismiss', function (e) {
-                            e.preventDefault();
-                            $.ajax({
-                                url: '<?php echo admin_url( 'admin-ajax.php' ); ?>',
-                                type: 'post',
-                                data: {
-                                    action: 'wpdeveloper_notice_dissmiss_for_<?php echo $this->plugin_name; ?>',
-                                    _wpnonce: '<?php echo wp_create_nonce('wpdeveloper_notice_dissmiss'); ?>',
-                                    dismiss: true,
-                                    notice: $(this).data('notice'),
-                                },
-                                success: function(response) {
-                                    $('.notice').hide();
-                                    console.log('Successfully saved!');
-                                },
-                                error: function(error) {
-                                    console.log('Something went wrong!');
-                                },
-                                complete: function() {
-                                    console.log('Its Complete.');
-                                }
-                            });
+                    $('.notice').on('click', 'button.notice-dismiss', function (e) {
+                        e.preventDefault();
+                        var notice = $(this).parents('.notice');
+                        $.ajax({
+                            url: '<?php echo admin_url( 'admin-ajax.php' ); ?>',
+                            type: 'post',
+                            data: {
+                                action: 'wpdeveloper_notice_dissmiss_for_<?php echo $this->plugin_name; ?>',
+                                _wpnonce: '<?php echo wp_create_nonce('wpdeveloper_notice_dissmiss'); ?>',
+                                dismiss: true,
+                                notice: notice.data('notice'),
+                            },
+                            success: function(response) {
+                                notice.hide();
+                                console.log('Successfully saved!');
+                            },
+                            error: function(error) {
+                                console.log('Something went wrong!');
+                            },
+                            complete: function() {
+                                console.log('Its Complete.');
+                            }
                         });
-                    }
+                    });
                 }
             } );
         </script>
@@ -949,6 +957,9 @@ if( ! class_exists( 'Betterdocs_Pro' ) ) {
     $notice->message( 'review', '<p>'. __( 'We hope you\'re enjoying BetterDocs! Could you please do us a BIG favor and give it a 5-star rating on WordPress to help us spread the word and boost our motivation?', $notice->text_domain ) .'</p>' );
     $notice->thumbnail( 'review', plugins_url( 'admin/assets/img/betterdocs-icon.svg', BETTERDOCS_BASENAME ) );
 
+    $notice->classes( 'update_10kuser', 'notice is-dismissible' );
+    $notice->message( 'update_10kuser', '<p>'. __( 'Join us to celebrate <a href="https://wpdeveloper.net/betterdocs-knowledge-base-plugin-10k/" target="_blank">10,000+ happy users</a> of BetterDocs & get exclusive <strong>40% OFF</strong> with coupon code <em><strong>‘BD10K’</strong></em> while upgrading to PRO. <a class="button button-small" href="https://betterdocs.co/#pricing" target="_blank">Grab the Offer</a> ', $notice->text_domain ) .'</p>' );
+
     /**
      * Current Notice End Time.
      * Notice will dismiss in 3 days if user does nothing.
@@ -963,6 +974,7 @@ if( ! class_exists( 'Betterdocs_Pro' ) ) {
     $notice->options_args = array(
         'notice_will_show' => [
             'opt_in' => $notice->timestamp,
+            'update_10kuser' => $notice->timestamp,
             'review' => $notice->makeTime( $notice->timestamp, '7 Day' ), // after 4 days
         ]
     );

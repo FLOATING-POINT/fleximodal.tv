@@ -20,6 +20,31 @@
             "endpoint": 0
         },
         {
+            "key": "field_5fce2e62d76ae",
+            "label": "On demand",
+            "name": "on_demand",
+            "type": "true_false",
+            "instructions": "Is this broadcast available on demand?",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "acfe_permissions": "",
+            "message": "",
+            "default_value": 0,
+            "ui": 0,
+            "show_column": 0,
+            "show_column_sortable": 0,
+            "show_column_weight": 1000,
+            "allow_quickedit": 1,
+            "allow_bulkedit": 1,
+            "ui_on_text": "",
+            "ui_off_text": ""
+        },
+        {
             "key": "field_5edfc125bc426",
             "label": "The broadcast url",
             "name": "the_broadcast_url",
@@ -63,6 +88,31 @@
             "acfe_textarea_code": 0
         },
         {
+            "key": "field_6011a37eaba1d",
+            "label": "Broadcast tite",
+            "name": "broadcast_title",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "acfe_permissions": "",
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": "",
+            "show_column": 1,
+            "show_column_sortable": 0,
+            "show_column_weight": 120,
+            "allow_quickedit": 1,
+            "allow_bulkedit": 1
+        },
+        {
             "key": "field_5f4fd727b3313",
             "label": "Broadcast type",
             "name": "broadcast_type",
@@ -99,7 +149,7 @@
             "name": "broadcast_duration",
             "type": "time_picker",
             "instructions": "The duration of the broadcast",
-            "required": 0,
+            "required": 1,
             "conditional_logic": 0,
             "wrapper": {
                 "width": "33",
@@ -341,5 +391,5 @@
     "acfe_form": 0,
     "acfe_meta": "",
     "acfe_note": "",
-    "modified": 1599864714
+    "modified": 1611768789
 }

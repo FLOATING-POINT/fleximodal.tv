@@ -164,13 +164,13 @@ class acfe_form_front{
             if(have_rows('acfe_form_actions', $form_id)):
                 
                 while(have_rows('acfe_form_actions', $form_id)): the_row();
-    
+            
                     $action = get_row_layout();
-    
+                    
                     $alias = get_sub_field('acfe_form_custom_alias');
-    
+                    
                     do_action('acfe/form/make/' . $action, $form, $post_id, $alias);
-                
+                    
                 endwhile;
             endif;
             
@@ -186,6 +186,8 @@ class acfe_form_front{
         
         // redirect
         if($return){
+    
+            _deprecated_function('ACF Extended - Dynamic Forms: "Redirection" setting', '0.8.7.5', "the new Redirect Action (See documentation: https://www.acf-extended.com/features/modules/dynamic-forms)");
             
             $return = acfe_form_map_field_value($return, $post_id, $form);
             
@@ -277,7 +279,7 @@ class acfe_form_front{
             'post_id'               => acf_get_valid_post_id(),
             'field_groups'          => get_field('acfe_form_field_groups',          $form_id),
             'field_groups_rules'    => get_field('acfe_form_field_groups_rules',    $form_id),
-            'post_field_groups'     => get_field('acfe_form_post_field_groups',     $form_id),
+            'post_field_groups'     => get_field('acfe_form_post_field_groups',     $form_id), // Deprecated
             'form'                  => get_field('acfe_form_form_element',          $form_id),
             'html_before_fields'    => get_field('acfe_form_html_before_fields',    $form_id),
             'custom_html_enabled'   => get_field('acfe_form_custom_html_enable',    $form_id),
@@ -297,7 +299,7 @@ class acfe_form_front{
             'updated_message'       => get_field('acfe_form_updated_message',       $form_id),
             'html_updated_message'  => get_field('acfe_form_html_updated_message',  $form_id),
             'updated_hide_form'	    => get_field('acfe_form_updated_hide_form',     $form_id),
-            'return'                => get_field('acfe_form_return',                $form_id),
+            'return'                => get_field('acfe_form_return',                $form_id), // Deprecated
             
             // Advanced
             'honeypot'              => get_field('acfe_form_honeypot',              $form_id),
@@ -424,7 +426,7 @@ class acfe_form_front{
         }
         
         // Updated message
-        if(acfe_form_is_submitted($args['name'])){
+        if(acfe_is_form_success($args['name'])){
             
             // Trigger Success JS
             echo '<div class="acfe-form-success" data-form-name="' . $args['name'] . '" data-form-id="' . $args['ID'] . '"></div>';

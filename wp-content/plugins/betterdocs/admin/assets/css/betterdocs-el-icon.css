@@ -25,7 +25,8 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.elementor-element-wrapper:not(.elementor-element--promotion) [class^="betterdocs-"]:after, .elementor-element-wrapper:not(.elementor-element--promotion) [class*=" betterdocs-"]:after {
+.elementor-element-wrapper:not(.elementor-element--promotion) [class^="betterdocs-"]:after, 
+.elementor-element-wrapper:not(.elementor-element--promotion) [class*=" betterdocs-"]:after {
   content: "\e90b";
   font-family: 'icomoon' !important;
   speak: none;
@@ -92,8 +93,30 @@
 .betterdocs-icon-Sidebar:before {
   content: "\e90a";
 }
+.betterdocs-icon-category-grid:before {
+  content: "\e909";
+}
+.betterdocs-icon-category-box:before {
+  content: "\e908";
+}
 
 .betterdocs-dialog-buttons-action {
   display: block;
   text-align: center;
+}
+.betterdocs-ea-warning,
+.elementor-panel .elementor-control-betterdocs_section_pro .elementor-panel-heading-title {
+  color: #f54;
+  font-weight: 700;
+}
+.betterdocs-warning {
+  font-size: 13px;
+  line-height: 18px;
+  background-color: #f3f0ca;
+  color: #886726;
+  padding: 10px;
+  border-radius: 3px;
+}
+.elementor-panel .elementor-element .icon {
+  height: 46px;
 }

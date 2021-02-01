@@ -25,6 +25,8 @@ if( ! class_exists( 'BetterDocsSetupWizard' ) ){
             // Localize the script with new data
            
             wp_localize_script( 'betterdocs-setup-wizard', 'bdquicksetup', array(
+                'finish_txt'   => __('Finish', 'betterdocs'),
+                'next_txt'   => __('Next', 'betterdocs'),
                 'customizerurl' => betterdocs_setup_get_customizer_setting_url(),
                 'docspageurl'   => betterdocs_setup_docs_page_url(),
                 'currentslug'   => BetterDocs_DB::get_settings('docs_slug'),
@@ -267,7 +269,7 @@ if( ! class_exists( 'BetterDocsSetupWizard' ) ){
                                         <a id="betterdocs-next-option" href="#" class="btn betterdocs-next-option"><?php esc_html_e('Next', 'betterdocs'); ?></a>
                                     </div>
                                     <div class="bottom-notice-left">
-                                        <p class="whatwecollecttext">We collect non-sensitive diagnostic data and plugin usage <br> information. Your site URL, WordPress & PHP version, <br> plugins & themes and email address to send you the discount <br> coupon. This data lets us make sure this plugin always stays <br> compatible with the most popular plugins and themes. No spam, we promise.</p>
+                                        <p class="whatwecollecttext"><?php esc_html_e('We collect non-sensitive diagnostic data and plugin usage information. Your site URL, WordPress & PHP version, plugins & themes and email address to send you the discount coupon. This data lets us make sure this plugin always stays compatible with the most popular plugins and themes. No spam, we promise.', 'betterdocs') ?></p>
                                         <button type="button" class="btn-collect"><?php esc_html_e('What We Collect?', 'betterdocs'); ?></button>
                                     </div>
                                     <div class="bottom-notice">
@@ -586,7 +588,8 @@ if( ! class_exists( 'BetterDocsSetupWizard' ) ){
             <tr>
                 <td>
                     <div class="betterdocs_getting_started_form text-center">
-                        <input type="checkbox" id="betterdocs_user_email_address" name="betterdocs_user_email_address" value="<?php print $current_user->user_email; ?>" checked> Share non-sensitive diagnostic data and plugin usage information.
+                        <input type="checkbox" id="betterdocs_user_email_address" name="betterdocs_user_email_address" value="<?php print $current_user->user_email; ?>" checked> 
+                        <?php esc_html_e('Share non-sensitive diagnostic data and plugin usage information.','betterdocs') ?>
                     </div>
                 </td>
             </tr>

@@ -1,4 +1,4 @@
- { /*box-sizing: border-box;*/ }
+
 $duration: 30s;
 
 @-webkit-keyframes ticker {
@@ -26,55 +26,87 @@ $duration: 30s;
     transform: translate3d(-100%, 0, 0);
   }
 }
-
 .header{
-  height:90px;
   height:117px;
-  width:80%;
   position:absolute;
   top:0px;
-  left:17%;
   display: flex;
+  justify-content: space-between;
   flex-direction: row;
-  padding:0 2%;
   z-index: 1000; 
+  width: 85%;
+  left: 15%;
 }
+
 .header .lbl{
-  flex: 2;
   align-self: center;
-  width:20%;
+  flex-grow: 1;
 }
 .header .lbl span{
-  padding: 10px;
+  padding: 13px 16px 10px 16px;
   color: #000;
   background: #fff;
-  font-size: 0.8rem;
 }
-#channel-logo-mark{
-  width: 3.7rem;
-  align-self: center;
-  justify-content: center;
-  position: absolute;
-  right: 1%;
+.header .lbl.live span{
+  color: #000;
+  background: #fff;
+}
+.header .lbl.on-demand{
+  min-width: 184px;
+}
+.header .lbl.on-demand span{
+  color: #ccda82;
+  background: #000;
+  border:1px solid #ccda82;
+  margin:0 4px 0 0;
+}
+#channel-logo-mark{  
   z-index: 1000;
+  flex: 1;
+  text-align: center;
+  display: inline-block;
+  height: 100%;
 }
+#channel-logo-mark span{
+  background-color: #000;
+  padding:0 6px;
+  display: inline-block;
+  height: 80%;
+  margin-top: 10%;
+}
+@media ( max-width: 800px ) {
+
+  #channel-logo-mark span{
+    background-color: #000;
+    padding:0 6px;
+    height: 100%;
+    display: inline-block;
+    height: 150%;
+    margin-top: -12.5%;
+  }
+
+  header.header{
+        width:100%;
+        left:0;
+        height:49px;
+        top: 63px;  
+    }
+    .header .lbl{
+      margin-left:3%
+    }
+
+}
+
 #channel-logo-mark img{
-    width: 100%;
-    height: auto;
-    max-height: 100%;
-    max-width: 100%;
+    height: 100%;
 }
-.channel-msgs {
-  
+.channel-msgs {  
 	box-sizing: content-box;
-	flex-grow: 8;
-  width: 80%;
-  padding: 0% 1%;
+  flex-grow: 8;
 	overflow: hidden;
   z-index: 200;
   align-self: center;
-  background:#000;
-
+  font-size: 140%;
 	.ticker{
 
     display: inline-block;
@@ -97,7 +129,7 @@ $duration: 30s;
 
       display: inline-block;
       padding: 0 0.5rem;
-      font-size: 0.82rem;
+      /*font-size: 0.82rem;*/
       color: white;   
 
     }

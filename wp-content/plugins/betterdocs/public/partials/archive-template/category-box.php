@@ -9,7 +9,7 @@
  * @subpackage BetterDocs/public
  */
 
-get_header(); 
+get_header();
 
 ?>
 <div class="betterdocs-wraper betterdocs-main-wraper">

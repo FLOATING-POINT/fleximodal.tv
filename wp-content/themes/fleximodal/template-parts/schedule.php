@@ -2,12 +2,36 @@
 
 	<?php
 
+	// this page now serves as on demand and scheduled broadcasts
+
+	if($_POST['post_type'] == 'channel'){
+
 		$posts = get_posts( array(
 	    'posts_per_page' => -1,
 	    'post_type'      => 'channel',
 	    'include'        => array($_POST['pid'])
 
-	));
+		));
+
+	} else if($_POST['post_type'] == 'broadcast'){ // reverse lookup
+
+		// args
+		$args = array(
+			'post_type'	=> 'channel',
+			'meta_query' => array(
+				array(
+					'key' => 'channel_playlists_%_channel_broadcasts',
+					'value' => '"' . $_POST['pid'] . '"',
+					'compare' => 'LIKE'
+				)
+			)
+		);		 
+		
+		$query = new WP_Query( $args ); 
+		$posts = $query->get_posts();		
+
+	}
+
 
 	if( $posts ) :
 	    foreach( $posts as $post ) : ?>
@@ -26,7 +50,12 @@
 	<div class="chnl-schedule">
 
 		<ul>
-			<li><div>Schedule</div></li>		
+			<?php //echo gettype($_POST['onDemand']); ?>
+			<?php if($_POST['onDemand'] == 'false'): ?>
+				<li><div>Schedule</div></li>	
+			<?php else: ?>
+				<li><div class="od">On Demand</div></li>
+			<?php endif; ?>	
 		
 			<?php
 
@@ -44,14 +73,12 @@
 				    // Loop through rows.
 				    while( have_rows('channel_playlists') ) : the_row();
 
-				        // Load sub field value.
-				       // $sub_value = get_sub_field('sub_field');
+				        // Load sub field value.				       
 
 				        $playlist_start_date_f 	= get_sub_field('playlist_start_date');
 				    	$playlist_start_date 	= new DateTime($playlist_start_date_f);
 				       	$playlist_start_date_ts = $playlist_start_date->getTimestamp();
-
-				        $playlist_duration_ts 		= 0;
+				        $playlist_duration_ts 	= 0;
 				        $broadcasts_content 	= get_sub_field('channel_broadcasts');
 
 				    	if($broadcasts_content){
@@ -60,13 +87,28 @@
 
 				    			$broadcast_duration = get_field('broadcast_duration', $broadcast_content->ID);
 				    			$broadcast_type 	= get_field('broadcast_type', $broadcast_content->ID);
-
 				    			$broadcast_type 	= 'main_broadcast';
+				    			$broadcast_url 		= get_the_permalink($broadcast_content->ID);
+				    			$broadcast_on_demand = get_field('on_demand', $broadcast_content->ID);			
+				    			$broadcast_duration_display = '';
+				    			$broadcast_mix_title 	= get_field('broadcast_title', $broadcast_content->ID);	    			
 
 				    			sscanf($broadcast_duration, "%d:%d:%d", $hours, $minutes, $seconds);
 
+				    			$broadcast_duration_display_hours = '';
+				    			$broadcast_duration_display_mins = '';
+
+				    			$broadcast_duration_display_hours = $hours.'HR';
+				    			if($hours>1) $broadcast_duration_display_hours .= 'S';
+				    			$broadcast_duration_display_mins = $minutes.'MIN';	
+				    			if($minutes>1) $broadcast_duration_display_mins .= 'S';
+				    			if($minutes<10) $broadcast_duration_display_mins = '0'.$broadcast_duration_display_mins;
+
+				    			$broadcast_duration_display = '0'.$broadcast_duration_display_hours.' '.$broadcast_duration_display_mins;
+				    			
+
 				    			$broadcast_duration_ts = isset($hours) ? $hours * 3600 + $minutes * 60 + $seconds : $minutes * 60 + $seconds;									
-				    			$broadcast_title 			= get_the_title($broadcast_content->ID);	
+				    			$broadcast_title 		= get_the_title($broadcast_content->ID);	
 
 				    			$broadcast_video_start 	= get_field('start_time', $broadcast_content->ID);
 								$broadcast_video_end 	= get_field('end_time', $broadcast_content->ID);	
@@ -95,7 +137,7 @@
 								
 
 						    	$playlist_start_date_display 		= date("d.m.Y H:i:s", $broadcast_start_time);
-						    	$data 								= array("live", $broadcast_title, $playlist_start_date_display, $broadcast_duration, null, null, $broadcast_type, $broadcast_start_time, $broadcast_duration_ts);
+						    	$data 								= array("live", $broadcast_title, $playlist_start_date_display, $broadcast_duration, null, null, $broadcast_type, $broadcast_start_time, $broadcast_duration_ts, $broadcast_url, $broadcast_on_demand, $broadcast_duration_display,$broadcast_mix_title);
 
 						    	array_push($broadcasts, $data); 		
 														
@@ -116,9 +158,9 @@
 	<?php
 
 	$recurring_start_time_ts 	= $playlist_start_date_ts;
-	$start_id = 0;
-	$broadcast_start_arr = [];
-	$broadcast_end_arr = [];
+	$start_id 					= 0;
+	$broadcast_start_arr 		= [];
+	$broadcast_end_arr 			= [];
 
 	while($recurring_start_time_ts < $date_now_ts){	
 
@@ -152,10 +194,19 @@
 	$broadcasts = [];
 	$broadcasts = array_merge($broadcast_start_arr,$broadcast_end_arr);
 
-	//print_r($broadcasts);
 	foreach ($broadcasts as $broadcast): ?>
 
+		<?php if($_POST['onDemand'] == 'false'): ?>
 		<li><?php echo $broadcast[1]; ?></li>
+		<?php else: ?>
+			<?php if($broadcast[10]): // broadcast is marked as on demand ?>
+				<li><a href="<?php echo $broadcast[9]; ?>">
+					<div><?php echo $broadcast[1]; ?><?php if(!empty($broadcast[12])):?> - <?php echo $broadcast[12]; ?><?php endif; ?></div>
+					<div><?php echo $broadcast[11]; ?></div>
+					</a>
+				</li>
+			<?php endif; ?>
+		<?php endif; ?>
 		
 	<?php endforeach; ?>
 

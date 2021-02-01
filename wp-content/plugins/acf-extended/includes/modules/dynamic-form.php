@@ -10,9 +10,14 @@ if(!acf_get_setting('acfe/modules/dynamic_forms'))
     return;
 
 acfe_include('includes/modules/form/admin.php');
-acfe_include('includes/modules/form/field-group.php');
+
 acfe_include('includes/modules/form/actions/custom.php');
 acfe_include('includes/modules/form/actions/email.php');
 acfe_include('includes/modules/form/actions/post.php');
+acfe_include('includes/modules/form/actions/redirect.php');
 acfe_include('includes/modules/form/actions/term.php');
 acfe_include('includes/modules/form/actions/user.php');
+
+do_action('acfe/include_form_actions');
+
+acfe_include('includes/modules/form/field-group.php');

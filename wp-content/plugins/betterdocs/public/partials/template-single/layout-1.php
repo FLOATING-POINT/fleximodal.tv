@@ -90,7 +90,29 @@ $output = betterdocs_generate_output();
 
 					}
 
-					the_content(); 
+					/* post content */
+					$enable_toc = BetterDocs_DB::get_settings('enable_toc');
+					$toc_hierarchy = BetterDocs_DB::get_settings('toc_hierarchy');
+					$toc_list_number = BetterDocs_DB::get_settings('toc_list_number');
+					$collapsible_toc_mobile = BetterDocs_DB::get_settings('collapsible_toc_mobile');
+					$supported_tag = BetterDocs_DB::get_settings('supported_heading_tag');
+					$htags = implode(',', $supported_tag);
+
+					if ($enable_toc == 1) {
+						echo do_shortcode(
+							"[betterdocs_toc
+							htags='{$htags}'
+							hierarchy='{$toc_hierarchy}'
+							list_number='{$toc_list_number}'
+							collapsible_on_mobile='{$collapsible_toc_mobile}']"
+						);
+					}
+					$content = apply_filters('the_content', get_the_content());
+					echo BetterDocs_Public::betterdocs_the_content(
+						$content,
+						BetterDocs_Public::htag_support(),
+						$enable_toc
+					);
 					
 					?>
 					
@@ -115,18 +137,26 @@ $output = betterdocs_generate_output();
 					do_action( 'betterdocs_docs_before_social' );
 
 					$post_social_share = get_theme_mod('betterdocs_post_social_share', true);
+					if ($post_social_share == true) {
+						$social_sharing_text = get_theme_mod('betterdocs_social_sharing_text', 'Share This Article :');
+						$facebook_sharing = get_theme_mod('betterdocs_post_social_share_facebook', true);
+						$twitter_sharing = get_theme_mod('betterdocs_post_social_share_twitter', true);
+						$linkedin_sharing = get_theme_mod('betterdocs_post_social_share_linkedin', true);
+						$pinterest_sharing = get_theme_mod('betterdocs_post_social_share_pinterest', true);
 
-					if( $post_social_share == true ){
-
-						echo do_shortcode( '[betterdocs_social_share]' );
-
+						echo do_shortcode(
+							"[betterdocs_social_share
+							title='{$social_sharing_text}'
+							facebook_sharing='{$facebook_sharing}'
+							twitter_sharing='{$twitter_sharing}'
+							linkedin_sharing='{$linkedin_sharing}'
+							pinterest_sharing='{$pinterest_sharing}']" 
+						);
 					}
 					?>
 
 					<div class="feedback-update-form">
-						
-						<?php 
-
+						<?php
 						$email_feedback = BetterDocs_DB::get_settings('email_feedback');
 						$flink_text = BetterDocs_DB::get_settings('feedback_link_text');
 						$fform_title = BetterDocs_DB::get_settings('feedback_form_title');

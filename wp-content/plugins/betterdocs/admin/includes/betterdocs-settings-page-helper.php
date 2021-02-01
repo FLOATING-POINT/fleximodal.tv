@@ -50,13 +50,6 @@ function betterdocs_settings_args(){
                             'priority'    => 10,
                             'disable' => true,
                         )),
-                        // 'disable_root_slug' => array(
-                        //     'type'        => 'checkbox',
-                        //     'label'       => __('Disable BetterDocs Root Slug' , 'betterdocs'),
-                        //     'default'     => '',
-                        //     'priority'    => 10,
-                        //     'help'  => __('Check this option to disable root slug from inner pages.' , 'betterdocs'),
-                        // ),
                         'builtin_doc_page' => array(
                             'type'        => 'checkbox',
                             'label'       => __('Enable Built-in Documentation Page' , 'betterdocs'),
@@ -85,7 +78,7 @@ function betterdocs_settings_args(){
                             'priority'	=> 10
                         ),
                         'docs_page' => array(
-                            'label' => __( 'Docs Page', 'betterdocs-pro' ),
+                            'label' => __( 'Docs Page', 'betterdocs' ),
                             'type'     => 'select',
                             'priority' => 10,
                             'options'  => betterdocs_get_pages(),
@@ -102,6 +95,13 @@ function betterdocs_settings_args(){
                             'label'     => __('Custom Tag Slug' , 'betterdocs'),
                             'default'   => 'docs-tag',
                             'priority'	=> 10
+                        ),
+                        'permalink_structure' => array(
+                            'type'     => 'text',
+                            'label'    => __( 'Doc Permalink', 'betterdocs' ),
+                            'default'  => apply_filters("betterdocs_doc_permalink_default", BetterDocs_Docs_Post_Type::$docs_slug),
+                            'priority' => 10,
+                            'help'     => betterdocs_permalink_structure_tags(),
                         ),
                     ),
                 )),
@@ -189,6 +189,12 @@ function betterdocs_settings_args(){
                                 'count_text' => array(
                                     'type'        => 'text',
                                     'label'       => __('Count Text' , 'betterdocs'),
+                                    'default'     => __('articles' , 'betterdocs'),
+                                    'priority'    => 10,
+                                ),
+                                'count_text_singular' => array(
+                                    'type'        => 'text',
+                                    'label'       => __('Count Text Singular' , 'betterdocs'),
                                     'default'     => __('article' , 'betterdocs'),
                                     'priority'    => 10,
                                 ),
@@ -247,6 +253,12 @@ function betterdocs_settings_args(){
                                     'default'   => 1,
                                     'priority'	=> 10
                                 ),
+                                'toc_list_number' => array(
+                                    'type'      => 'checkbox',
+                                    'label'     => __('TOC List Number' , 'betterdocs'),
+                                    'default'   => 1,
+                                    'priority'	=> 10
+                                ),
                                 'enable_sticky_toc' => array(
                                     'type'      => 'checkbox',
                                     'label'     => __('Enable Sticky TOC' , 'betterdocs'),
@@ -297,6 +309,29 @@ function betterdocs_settings_args(){
                                     'label'     => __('Enable Breadcrumb' , 'betterdocs'),
                                     'default'   => 1,
                                     'priority'	=> 10,
+                                    'dependency'  => array(
+                                        1 => array(
+                                            'fields' => array('breadcrumb_home_text', 'breadcrumb_home_url', 'enable_breadcrumb_category', 'enable_breadcrumb_title')
+                                        )
+                                    ),
+                                    'hide'  => array(
+                                        0 => array(
+                                            'fields' => array('breadcrumb_home_text', 'breadcrumb_home_url', 'enable_breadcrumb_category', 'enable_breadcrumb_title')
+                                        )
+                                    )
+                                ),
+                                'breadcrumb_home_text' => array(
+                                    'type'      => 'text',
+                                    'label'     => __('Breadcrumb Home Text' , 'betterdocs'),
+                                    'default'   => __('Home' , 'betterdocs'),
+                                    'priority'	=> 10,
+                                    
+                                ),
+                                'breadcrumb_home_url' => array(
+                                    'type'      => 'text',
+                                    'label'     => __('Breadcrumb Home URL' , 'betterdocs'),
+                                    'priority'	=> 10,
+                                    'default'	=> get_home_url(),
                                 ),
                                 'enable_breadcrumb_category' => array(
                                     'type'      => 'checkbox',
@@ -436,23 +471,7 @@ function betterdocs_settings_args(){
                 'shortcodes_settings' => apply_filters('betterdocs_shortcodes_settings', array(
                     'title' => __( 'Shortcodes', 'betterdocs' ),
                     'priority' => 10,
-                    'fields' => array(
-                        'category_grid' => array(
-                            'type'      => 'text',
-                            'label'     => __('Category Grid' , 'betterdocs'),
-                            'default'   => '[betterdocs_category_grid]',
-                            'readonly'	=> true,
-                            'priority'	=> 10,
-                            'help'        => __('<strong>You can use:</strong> [betterdocs_category_grid post_counter="true" icon="true" masonry="true" column="3" posts_per_grid="5" nested_subcategory="true" terms="term_ID, term_ID"]' , 'betterdocs'),
-                        ),
-                        'category_box' => array(
-                            'type'      => 'text',
-                            'label'     => __('Category Box' , 'betterdocs'),
-                            'default'   => '[betterdocs_category_box]',
-                            'readonly'	=> true,
-                            'priority'	=> 10,
-                            'help'        => __('<strong>You can use:</strong> [betterdocs_category_box column="3"]' , 'betterdocs'),
-                        ),
+                    'fields' => apply_filters('betterdocs_shortcode_fields', array(
                         'search_form' => array(
                             'type'      => 'text',
                             'label'     => __('Search Form' , 'betterdocs'),
@@ -467,27 +486,43 @@ function betterdocs_settings_args(){
                             'readonly'	=> true,
                             'priority'	=> 10
                         ),
-                    ),
+                        'category_grid' => array(
+                            'type'      => 'text',
+                            'label'     => __('Category Grid- Layout 1' , 'betterdocs'),
+                            'default'   => '[betterdocs_category_grid]',
+                            'readonly'	=> true,
+                            'priority'	=> 10,
+                            'help'        => __('<strong>You can use:</strong> [betterdocs_category_grid post_counter="true" icon="true" masonry="true" column="3" posts_per_grid="5" nested_subcategory="true" terms="term_ID, term_ID"]' , 'betterdocs'),
+                        ),
+                        'category_box' => array(
+                            'type'      => 'text',
+                            'label'     => __('Category Box- Layout 2' , 'betterdocs'),
+                            'default'   => '[betterdocs_category_box]',
+                            'readonly'	=> true,
+                            'priority'	=> 10,
+                            'help'      => __('<strong>You can use:</strong> [betterdocs_category_box column="3" terms="term_ID, term_ID"]' , 'betterdocs'),
+                        ),
+                    )),
                 )), 
             )),
         ),
         'betterdocs_advanced_settings' => array(
-            'title'       => __( 'Advanced Settings', 'betterdocs-pro' ),
+            'title'       => __( 'Advanced Settings', 'betterdocs' ),
             'priority'    => 20,
             'button_text' => __( 'Save Settings' ),
             'sections' => apply_filters( 'betterdocs_pro_advanced_settings_sections', array(
                 'role_management_section' => array(
-                    'title' => __('Role Management', 'betterdocs-pro'),
+                    'title' => __('Role Management', 'betterdocs'),
                     'priority'    => 0,
                     'fields' => array(
                         'rms_title' => array(
                             'type'        => 'title',
-                            'label'       => __('Role Management', 'betterdocs-pro'),
+                            'label'       => __('Role Management', 'betterdocs'),
                             'priority'    => 0,
                         ),
                         'article_roles' => array(
                             'type'        => 'select',
-                            'label'       => __('Who Can Write Docs?', 'betterdocs-pro'),
+                            'label'       => __('Who Can Write Docs?', 'betterdocs'),
                             'priority'    => 1,
                             'multiple' => true,
                             'disable' => true,
@@ -496,7 +531,7 @@ function betterdocs_settings_args(){
                         ),
                         'settings_roles' => array(
                             'type'        => 'select',
-                            'label'       => __('Who Can Edit Settings?', 'betterdocs-pro'),
+                            'label'       => __('Who Can Edit Settings?', 'betterdocs'),
                             'priority'    => 1,
                             'multiple' => true,
                             'disable' => true,
@@ -505,7 +540,7 @@ function betterdocs_settings_args(){
                         ),
                         'analytics_roles' => array(
                             'type'        => 'select',
-                            'label'       => __('Who Can Check Analytics?', 'betterdocs-pro'),
+                            'label'       => __('Who Can Check Analytics?', 'betterdocs'),
                             'priority'    => 1,
                             'multiple' => true,
                             'disable' => true,
@@ -517,4 +552,43 @@ function betterdocs_settings_args(){
             ) )
         )
     ));
+}
+
+/**
+ * Undocumented function
+ *
+ * @return string
+ */
+function betterdocs_permalink_structure_tags(){
+    $tags = apply_filters("betterdocs_doc_permalink_tags", [
+            '%doc_category%' => [
+                'class'      => '',
+                'aria-label' => __( 'Docs Categories', 'betterdocs' ),
+                'data-added' => __( 'doc_category added to permalink structure', 'betterdocs' ),
+                'data-used'  => __( 'doc_category (already used in permalink structure)', 'betterdocs' ),
+            ],
+        ]);
+
+    $return = __( "<b>Available tags:</b>", 'betterdocs' );
+    $return .= "
+        <div class='form-table permalink-structure'>
+            <div class='available-structure-tags hide-if-no-js'>
+                <div id='custom_selection_updated' aria-live='assertive' class='screen-reader-text'></div>
+                <ul role='list'>
+    ";
+
+    foreach($tags as $tag => $args){
+        $return .= "
+            <li class='{$args['class']}'>
+                <button type='button' class='button button-secondary' aria-label='{$args['aria-label']}' data-added='{$args['data-added']}' data-used='{$args['data-used']}'>$tag</button>
+            </li>
+        ";
+    }
+
+    $return .= "
+                </ul>
+            </div>
+        </div>
+    ";
+    return $return;
 }

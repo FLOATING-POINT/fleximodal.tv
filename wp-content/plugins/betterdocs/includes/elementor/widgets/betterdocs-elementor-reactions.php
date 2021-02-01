@@ -245,13 +245,25 @@ class BetterDocs_Elementor_Reactions extends Widget_Base {
                 ],
             ]
         );
+
         $this->add_control(
             'reaction_box_icon_background',
             [
-                'label'     => esc_html__('Background', 'betterdocs'),
+                'label'     => esc_html__('Background Color', 'betterdocs'),
                 'type'      => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .betterdocs-article-reaction-links li a' => 'background-color: {{VALUE}};',
+                ],
+            ]
+        );
+        
+        $this->add_control(
+            'reaction_box_icon_hover_background',
+            [
+                'label'     => esc_html__('Hover Background Color', 'betterdocs'),
+                'type'      => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .betterdocs-article-reaction-links li a:hover' => 'background-color: {{VALUE}};',
                 ],
             ]
         );
@@ -262,7 +274,18 @@ class BetterDocs_Elementor_Reactions extends Widget_Base {
                 'label'     => esc_html__('Color', 'betterdocs'),
                 'type'      => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .betterdocs-article-reaction-links li a svg' => 'fill: {{VALUE}};',
+                    '{{WRAPPER}} .betterdocs-article-reaction-links li a svg path' => 'fill: {{VALUE}};',
+                ],
+            ]
+        );
+        
+        $this->add_control(
+            'reaction_box_icon_hover_color',
+            [
+                'label'     => esc_html__('Hover Color', 'betterdocs'),
+                'type'      => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .betterdocs-article-reaction-links li a:hover svg path' => 'fill: {{VALUE}};',
                 ],
             ]
         );

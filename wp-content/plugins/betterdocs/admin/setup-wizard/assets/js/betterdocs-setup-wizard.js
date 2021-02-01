@@ -52,11 +52,11 @@ jQuery(document).ready(function ($) {
                 jQuery('#betterdocsqswemailskipbutton').hide();
             }
             if (n == (tabList.length - 1)) {
-                document.getElementById("betterdocs-next-option").innerHTML = "Finish";
+                document.getElementById("betterdocs-next-option").innerHTML = bdquicksetup.finish_txt;
                 // document.getElementById("betterdocs-next-option").classList.add("betterdocs-quick-finish");
                 return false;
             } else {
-                document.getElementById("betterdocs-next-option").innerHTML = "Next";
+                document.getElementById("betterdocs-next-option").innerHTML = bdquicksetup.next_txt;
             }
         }
         function showTabNav(n){
@@ -237,4 +237,3 @@ jQuery(document).ready(function ($) {
         });
     }
 });
-

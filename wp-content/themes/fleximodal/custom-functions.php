@@ -60,7 +60,6 @@ function add_ajax_library() {
 }
 add_action('wp_head', 'add_ajax_library' );
 
-
 function get_tv_guide(){    
 
     echo get_template_part('template-parts/tv-guide');
@@ -68,7 +67,6 @@ function get_tv_guide(){
     die(); 
 
 }
-
 
 add_action('wp_ajax_get_tv_guide', 'get_tv_guide'); // for admin logged in
 add_action('wp_ajax_nopriv_get_tv_guide', 'get_tv_guide'); // for general public*/
@@ -84,6 +82,19 @@ function get_schedule(){
 add_action('wp_ajax_get_schedule', 'get_schedule'); // for admin logged in
 add_action('wp_ajax_nopriv_get_schedule', 'get_schedule'); // for general public*/
 
+// we are in a broadcast so we have to find which channel this has been added to by reverse querying 
+// custom filter to replace '=' with 'LIKE'
+function allow_wildcards( $where ) {
+    global $wpdb;
+    $where = str_replace(
+    "meta_key = 'channel_playlists_%_channel_broadcasts'", 
+    "meta_key LIKE 'channel_playlists_%_channel_broadcasts'",
+    $wpdb->remove_placeholder_escape($where)
+    );
+    return $where;
+}
+
+add_filter('posts_where', 'allow_wildcards');
 
 function custom_1245_login_logo() { ?>
     <style type="text/css">
@@ -264,10 +275,11 @@ function setup(){
 
   global $template;
 
-  if(basename($template) == 'template-tv.php' || basename($template) == 'template-channels.php' ){
+  if(basename($template) == 'template-tv.php' || basename($template) == 'template-channels.php' || basename($template) == 'single-broadcast.php' ){
+
     wp_enqueue_style( 'style', get_template_directory_uri() . '/assets/css/style.css', array('reset'), '1.0', 'screen, projection' );
     wp_enqueue_style( 'style-tv', get_template_directory_uri() . '/assets/css-custom/style-tv.css', array('reset'), '1.0', 'screen, projection' );
-    wp_enqueue_style( 'style-ticker', get_template_directory_uri() . '/assets/css-custom/ticker.css', array('reset'), '1.0', 'screen, projection' );
+    //wp_enqueue_style( 'style-ticker', get_template_directory_uri() . '/assets/css-custom/ticker.css', array('reset'), '1.0', 'screen, projection' );
     
   } else{
     $theme_version = wp_get_theme()->get( 'Version' );

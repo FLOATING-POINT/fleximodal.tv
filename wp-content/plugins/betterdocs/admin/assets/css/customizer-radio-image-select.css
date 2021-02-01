@@ -69,9 +69,9 @@
 .customize-control-radio-buttonset label.ui-corner-right {
     border-radius: 0 3px 3px 0; 
 }
-.image-select {
+.customize-control-betterdocs-radio-image .image.ui-buttonset label.image-select {
     position: relative;
-    display: block;
+    display: inline-block;
 }
 .image-select .go-pro {
     display: none;

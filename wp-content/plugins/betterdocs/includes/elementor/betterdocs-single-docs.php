@@ -1,8 +1,7 @@
 <?php
 
-
 use Elementor\Controls_Manager;
-use ElementorPro\Modules\ThemeBuilder\Documents\Single;
+use ElementorPro\Modules\ThemeBuilder\Documents\Single_Base;
 use ElementorPro\Plugin;
 
 if (!defined('ABSPATH')) {
@@ -18,9 +17,10 @@ if (!defined('ABSPATH')) {
  * @subpackage BetterDocs/elementor
  * @author     WPDeveloper <support@wpdeveloper.net>
  */
-class BetterDocs_Single_Docs extends Single {
-
-    public static function get_properties () {
+class BetterDocs_Single_Docs extends Single_Base
+{
+    public static function get_properties()
+    {
         $properties = parent::get_properties();
 
         $properties['location'] = 'single';
@@ -29,15 +29,18 @@ class BetterDocs_Single_Docs extends Single {
         return $properties;
     }
 
-    public function get_name () {
+    protected static function get_site_editor_type()
+    {
         return 'docs';
     }
 
-    public static function get_title () {
+    public static function get_title()
+    {
         return __('Single Doc', 'betterdocs');
     }
 
-    public static function get_editor_panel_config () {
+    public static function get_editor_panel_config()
+    {
         $config = parent::get_editor_panel_config();
         $config['widgets_settings']['betterdocs-elements'] = [
             'show_in_panel' => true,
@@ -46,11 +49,13 @@ class BetterDocs_Single_Docs extends Single {
         return $config;
     }
 
-    public function get_depended_widget () {
-        return Plugin::elementor()->widgets_manager->get_widget_types('betterdocs-elements');
+    public function get_depended_widget()
+    {
+        return Plugin::elementor()->widgets_manager->get_widget_types('betterdocs-content');
     }
 
-    public function get_container_attributes () {
+    public function get_container_attributes()
+    {
         $attributes = parent::get_container_attributes();
 
         $attributes['class'] .= ' betterdocs';
@@ -58,7 +63,8 @@ class BetterDocs_Single_Docs extends Single {
         return $attributes;
     }
 
-    public function filter_body_classes ($body_classes) {
+    public function filter_body_classes($body_classes)
+    {
         $body_classes = parent::filter_body_classes($body_classes);
 
         if (get_the_ID() === $this->get_main_id() || Plugin::elementor()->preview->is_preview_mode($this->get_main_id())) {
@@ -68,19 +74,22 @@ class BetterDocs_Single_Docs extends Single {
         return $body_classes;
     }
 
-    public function before_get_content () {
+    public function before_get_content()
+    {
         parent::before_get_content();
 
         do_action('betterdocs_before_single_product');
     }
 
-    public function after_get_content () {
+    public function after_get_content()
+    {
         parent::after_get_content();
 
         do_action('betterdocs_after_single_product');
     }
 
-    public function print_content () {
+    public function print_content()
+    {
         if (post_password_required()) {
             echo get_the_password_form();
             return;
@@ -89,11 +98,13 @@ class BetterDocs_Single_Docs extends Single {
         parent::print_content();
     }
 
-    public function __construct (array $data = []) {
+    public function __construct(array $data = [])
+    {
         parent::__construct($data);
     }
 
-    protected static function get_editor_panel_categories () {
+    protected static function get_editor_panel_categories()
+    {
         $categories = [
             // Move to top as active.
             'betterdocs-elements' => [
@@ -107,7 +118,8 @@ class BetterDocs_Single_Docs extends Single {
         return $categories;
     }
 
-    protected function _register_controls () {
+    protected function _register_controls()
+    {
         parent::_register_controls();
 
         $this->update_control(
@@ -133,12 +145,12 @@ class BetterDocs_Single_Docs extends Single {
         }
     }
 
-    protected function get_remote_library_config () {
+    protected function get_remote_library_config()
+    {
         $config = parent::get_remote_library_config();
 
-        $config['category'] = 'single docs';
+        $config['category'] = 'Single Docs';
 
         return $config;
     }
-
 }

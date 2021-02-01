@@ -81,16 +81,16 @@ BetterDocsSetupWizard::setSection(array(
 			'image_url'     => BETTERDOCS_ADMIN_URL . 'assets/img/betterdocs-setup-articles.png',
 			'options'		=> [
 				array(
-					'title' => 'Create Categories',
+					'title' => esc_html__('Create Categories', 'betterdocs'),
 					'url'	=> admin_url('edit-tags.php?taxonomy=doc_category&post_type=docs'),
-					'feature_title' => 'Create Categories',
-					'feature_content' => 'You can create Categories from <strong>BetterDocs &gt; Categories</strong>'
+					'feature_title' => esc_html__('Create Categories', 'betterdocs'),
+					'feature_content' => sprintf( '%1$s %2$s', __( 'You can create Categories from ', 'betterdocs' ), '<strong>BetterDocs &gt; Categories</strong>' )
 				),
 				array(
-					'title' => 'Create Docs',
+					'title' => esc_html__('Create Docs', 'betterdocs'),
 					'url'	=> admin_url('post-new.php?post_type=docs'),
-					'feature_title' => 'Create Docs',
-					'feature_content' => 'You can create Docs from <strong>BetterDocs &gt; Add New</strong>'
+					'feature_title' => esc_html__('Create Docs', 'betterdocs'),
+					'feature_content' => sprintf( '%1$s %2$s', __( 'You can create Docs from ', 'betterdocs' ), '<strong>BetterDocs &gt; Add New</strong>' )
 				)
 			]
 		),
@@ -111,16 +111,16 @@ BetterDocsSetupWizard::setSection(array(
 			'options'		=> [
 				array(
 					'id'	=> 'bdgotocustomize',
-					'title' => 'Go To Customizer',
+					'title' => esc_html__('Go To Customizer', 'betterdocs'),
 					'url'	=>  betterdocs_setup_get_customizer_setting_url(),
-					'feature_title' => 'Easy To Customize',
-					'feature_content' => 'Customize Docs page, Docs, Archive page Live'
+					'feature_title' => esc_html__('Easy To Customize', 'betterdocs'),
+					'feature_content' => esc_html__('Customize Docs page, Docs, Archive page Live', 'betterdocs'),
 				),
 				array(
-					'title' => 'Go To Settings',
+					'title' => esc_html__('Go To Settings', 'betterdocs'),
 					'url'	=> betterdocs_get_admin_settings_url(),
-					'feature_title' => 'Extensive Options Panel',
-					'feature_content' => 'Take control of your pages with extensive settings options'
+					'feature_title' => esc_html__('Extensive Options Panel', 'betterdocs'),
+					'feature_content' => esc_html__('Take control of your pages with extensive settings options', 'betterdocs'),
 				)
 			]
 		),
@@ -141,7 +141,7 @@ BetterDocsSetupWizard::setSection(array(
 			'options'		=> [
 				array(
 					'id'	=> 'bdgotodocspage',
-					'title' => 'Visit Your Documentation Page',
+					'title' => esc_html__('Visit Your Documentation Page', 'betterdocs'),
 					'url'	=> betterdocs_setup_docs_page_url()
 				),
 			]

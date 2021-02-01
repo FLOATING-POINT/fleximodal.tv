@@ -20,16 +20,19 @@ class acfe_dev{
         if(!defined('SCRIPT_DEBUG'))
             define('SCRIPT_DEBUG', true);
         
+        // Additional Enqueue
+        add_action('admin_enqueue_scripts', array($this, 'admin_enqueue_scripts'));
+        
         // Post
-        add_action('load-post.php',		array($this, 'load_post'));
-		add_action('load-post-new.php',	array($this, 'load_post'));
+        add_action('load-post.php',		    array($this, 'load_post'));
+		add_action('load-post-new.php',	    array($this, 'load_post'));
         
         // Term
-        add_action('load-term.php',     array($this, 'load_term'));
+        add_action('load-term.php',         array($this, 'load_term'));
         
         // User
-        add_action('show_user_profile', array($this, 'load_user'));
-		add_action('edit_user_profile', array($this, 'load_user'));
+        add_action('show_user_profile',     array($this, 'load_user'), 20);
+		add_action('edit_user_profile',     array($this, 'load_user'), 20);
         
         // Options
         add_action('acf/options_page/submitbox_before_major_actions',   array($this, 'load_admin'));
@@ -38,6 +41,21 @@ class acfe_dev{
         add_action('wp_ajax_acfe/bulk_delete_meta',                     array($this, 'ajax_bulk_delete_meta'));
         
 	}
+ 
+	/*
+	 * Enqueue Scripts
+	 */
+    function admin_enqueue_scripts(){
+        
+        // bail early if not valid screen
+        if(!acf_is_screen(array('profile-network', 'user-edit-network', 'user-network'))){
+            return;
+        }
+        
+        // enqueue
+        acf_enqueue_scripts();
+        
+    }
     
     /*
      * Post
@@ -46,29 +64,25 @@ class acfe_dev{
         
         global $typenow;
         
-        $post_type = $typenow;
-        
         // Remove WP post meta box
         remove_meta_box('postcustom', false, 'normal');
         
-        if(!acfe_is_super_dev()){
-        
-            $restricted = array('acf-field-group', 'acfe-dbt', 'acfe-dop', 'acfe-dpt', 'acfe-dt', 'acfe-form', 'acfe-template');
-            
-            if(in_array($post_type, $restricted))
-                return;
-        
+        if(!acfe_is_super_dev() && in_array($typenow, array('acf-field-group', 'acfe-dbt', 'acfe-dop', 'acfe-dpt', 'acfe-dt', 'acfe-form', 'acfe-template'))){
+            return;
         }
         
         // actions
-        add_action('add_meta_boxes', array($this, 'add_post_meta_boxes'), 10, 2);
+        add_action('add_meta_boxes', array($this, 'edit_post'), 10, 2);
         
     }
     
-    function add_post_meta_boxes($post_type, $post){
+    function edit_post($post_type, $post){
+    
+        // Get Post ID
+        $post_id = $post->ID;
         
         // Add Meta Boxes
-        $this->add_meta_boxes(0, $post_type);
+        $this->add_meta_boxes($post_id, $post_type);
         
     }
     
@@ -81,48 +95,29 @@ class acfe_dev{
 		$taxonomy = $screen->taxonomy;
         
         // actions
-        add_action("{$taxonomy}_edit_form", array($this, 'edit_term'), 20, 2);
+        add_action("{$taxonomy}_edit_form", array($this, 'edit_term'), 10, 2);
         
     }
     
     function edit_term($term, $taxonomy){
         
         // Get Term ID
-        $post_id = acf_get_term_post_id($term->taxonomy, $term->term_id);
+        $post_id = 'term_' . $term->term_id;
         
         // Add Meta Boxes
-        $this->add_meta_boxes($post_id, 'edit-term');
-        
-        // Poststuff
-        echo '<div id="poststuff">';
-        
-            do_meta_boxes('edit-term', 'normal', array());
-            
-        echo '</div>';
+        $this->add_meta_boxes($post_id, "edit-{$taxonomy}");
         
     }
     
     /*
      * User
      */
-    function load_user(){
+    function load_user($user){
         
-        // Get User ID
-        global $user_id;
-        $user_id = (int) $user_id;
-        
-        if(empty($user_id))
-            return;
+        $post_id = 'user_' . $user->ID;
         
         // Add Meta Boxes
-        $this->add_meta_boxes('user_' . $user_id, 'edit-user');
-        
-        // Poststuff
-        echo '<div id="poststuff">';
-        
-            do_meta_boxes('edit-user', 'normal', array());
-            
-        echo '</div>';
+        $this->add_meta_boxes($post_id, array('profile', 'user-edit'));
         
     }
     
@@ -138,7 +133,7 @@ class acfe_dev{
     /*
      * Add Meta Boxes
      */
-    function add_meta_boxes($post_id = 0, $object_type){
+    function add_meta_boxes($post_id, $object_type){
         
         // Get Meta
         $this->get_meta($post_id);
@@ -321,7 +316,7 @@ class acfe_dev{
                         <option value="delete"><?php _e('Delete'); ?></option>
                     </select>
                     
-                    <input type="submit" id="acfe_bulk_deleta_meta_submit" class="button action" value="<?php _e('Apply'); ?>">
+                    <input type="submit" id="acfe_bulk_delete_meta_submit" class="button action" value="<?php _e('Apply'); ?>">
                     
                 </div>
                 
@@ -353,7 +348,7 @@ class acfe_dev{
         elseif(is_serialized($value)){
             
             $return = '<pre style="max-height:200px; overflow:auto; white-space: pre;">' . print_r(maybe_unserialize($value), true) . '</pre>';
-            $return .= '<pre style="max-height:200px; overflow:auto; white-space: pre; margin-top:10px;">' . print_r($value, true) . '</pre>';
+            $return .= '<pre style="max-height:200px; overflow:auto; white-space: unset; margin-top:10px; max-width:100%;">' . print_r($value, true) . '</pre>';
             
         }
         
@@ -368,7 +363,7 @@ class acfe_dev{
         elseif(acfe_is_json($value)){
             
             $return = '<pre style="max-height:200px; overflow:auto; white-space: pre;">' . print_r(json_decode($value), true) . '</pre>';
-            $return .= '<pre style="max-height:200px; overflow:auto; white-space: pre; margin-top:10px;">' . print_r($value, true) . '</pre>';
+            $return .= '<pre style="max-height:200px; overflow:auto; white-space: unset; margin-top:10px; max-width:100%;">' . print_r($value, true) . '</pre>';
             
         }
         

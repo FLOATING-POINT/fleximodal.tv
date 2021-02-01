@@ -39,6 +39,8 @@ class BetterDocs_Elementor_Doc_Share extends Widget_Base {
 
     protected function _register_controls () {
 
+        $this->share_controls();
+
         $this->start_controls_section(
             'section_column_settings',
             [
@@ -52,15 +54,30 @@ class BetterDocs_Elementor_Doc_Share extends Widget_Base {
             [
                 'label'      => __('Width', 'betterdocs'),
                 'type'       => Controls_Manager::SLIDER,
-                'size_units' => ['px'],
+                'size_units' => ['px', '%', 'em'],
                 'range'      => [
                     'px' => [
-                        'max'  => 2500,
-                        'step' => 1,
+                        'min'  => 0,
+                        'max'  => 2000,
+                        'step' => 1
+                    ],
+                    '%' => [
+                        'min'  => 0,
+                        'max'  => 100,
+                        'step' => 1
+                    ],
+                    'em' => [
+                        'min'  => 100,
+                        'max'  => 100,
+                        'step' => 1
                     ],
                 ],
+                'default' => [
+                    'unit' => '%',
+                    'size' => 100
+                ],
                 'selectors'  => [
-                    '{{WRAPPER}} .betterdocs-social-share' => 'width: {{SIZE}}px;',
+                    '{{WRAPPER}} .betterdocs-social-share' => 'width: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
@@ -179,6 +196,76 @@ class BetterDocs_Elementor_Doc_Share extends Widget_Base {
         $this->icon_style();
     }
 
+    public function share_controls()
+    {
+        $this->start_controls_section(
+            'section_options',
+            [
+                'label' => __('Controls', 'betterdocs')
+            ]
+        );
+
+        $this->add_control(
+			'share_title',
+			[
+				'label' => __( 'Title', 'betterdocs' ),
+				'type' => Controls_Manager::TEXT,
+				'default' => __( 'Share This Article :', 'betterdocs' ),
+				'placeholder' => __( 'Type share title here', 'betterdocs' ),
+			]
+        );
+        
+        $this->add_control(
+			'facebook',
+			[
+				'label' => __( 'Facebook', 'betterdocs' ),
+				'type' => Controls_Manager::SWITCHER,
+				'label_on' => __( 'Show', 'betterdocs' ),
+				'label_off' => __( 'Hide', 'betterdocs' ),
+				'return_value' => '1',
+				'default' => '1',
+			]
+		);
+        
+        $this->add_control(
+			'twitter',
+			[
+				'label' => __( 'Twitter', 'betterdocs' ),
+				'type' => Controls_Manager::SWITCHER,
+				'label_on' => __( 'Show', 'betterdocs' ),
+				'label_off' => __( 'Hide', 'betterdocs' ),
+				'return_value' => '1',
+				'default' => '1',
+			]
+		);
+        
+        $this->add_control(
+			'linkedin',
+			[
+				'label' => __( 'Linkedin', 'betterdocs' ),
+				'type' => Controls_Manager::SWITCHER,
+				'label_on' => __( 'Show', 'betterdocs' ),
+				'label_off' => __( 'Hide', 'betterdocs' ),
+				'return_value' => '1',
+				'default' => '1',
+			]
+		);
+        
+        $this->add_control(
+			'pinterest',
+			[
+				'label' => __( 'Pinterest', 'betterdocs' ),
+				'type' => Controls_Manager::SWITCHER,
+				'label_on' => __( 'Show', 'betterdocs' ),
+				'label_off' => __( 'Hide', 'betterdocs' ),
+				'return_value' => '1',
+				'default' => '1',
+			]
+		);
+
+        $this->end_controls_section();
+    }
+
     public function icon_style(){
         $this->start_controls_section(
             'section_icon_settings',
@@ -235,11 +322,16 @@ class BetterDocs_Elementor_Doc_Share extends Widget_Base {
     }
 
     protected function render () {
-        $post_social_share = get_theme_mod('betterdocs_post_social_share', true);
-        if ($post_social_share == true) {
-            echo '<div class="betterdocs-el-single-share">';
-            echo do_shortcode('[betterdocs_social_share]');
-            echo '</div>';
-        }
+        $settings = $this->get_settings_for_display();
+        echo '<div class="betterdocs-el-single-share">';
+        echo do_shortcode(
+            "[betterdocs_social_share
+            title='{$settings['share_title']}'
+            facebook_sharing='{$settings['facebook']}'
+            twitter_sharing='{$settings['twitter']}'
+            linkedin_sharing='{$settings['linkedin']}'
+            pinterest_sharing='{$settings['pinterest']}']" 
+        );
+        echo '</div>';
     }
 }

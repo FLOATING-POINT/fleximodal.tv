@@ -65,6 +65,17 @@ class BetterDocs_Elementor_Feedback extends Widget_Base {
             ]
         );
 
+        $this->add_control(
+            'feedback_form_button_text',
+            [
+                'label'       => __('Button Text', 'betterdocs'),
+                'type'        => Controls_Manager::TEXT,
+                'default'     => 'Send',
+                'placeholder' => __('Enter button text', 'betterdocs'),
+                'title'       => __('Enter button text here', 'betterdocs'),
+            ]
+        );
+
         $this->end_controls_section();
 
         $this->start_controls_section(
@@ -287,7 +298,7 @@ class BetterDocs_Elementor_Feedback extends Widget_Base {
                     ],
                 ],
                 'selectors'  => [
-                    '{{WRAPPER}} .betterdocs-modalwindow .betterdocs-feedback-form label' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .betterdocs-modalwindow .betterdocs-feedback-form label input,{{WRAPPER}} .betterdocs-modalwindow .betterdocs-feedback-form label textarea' => 'margin-top: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
@@ -330,6 +341,29 @@ class BetterDocs_Elementor_Feedback extends Widget_Base {
             ]
         );
 
+        $this->add_responsive_control(
+            'feedback_form_button_width',
+            [
+                'label'      => esc_html__('Width', 'betterdocs'),
+                'type'       => Controls_Manager::SLIDER,
+                'size_units' => ['px', '%'],
+                'range'      => [
+                    'px' => [
+                        'min'  => 0,
+                        'max'  => 500,
+                        'step' => 1,
+                    ],
+                    '%'  => [
+                        'min' => 0,
+                        'max' => 100,
+                    ],
+                ],
+                'selectors'  => [
+                    '{{WRAPPER}} .betterdocs-modalwindow .betterdocs-feedback-form #feedback_form_submit_btn' => 'width: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+
         $this->add_control(
             'feedback_form_button_padding',
             [
@@ -338,6 +372,36 @@ class BetterDocs_Elementor_Feedback extends Widget_Base {
                 'size_units' => ['px', 'em', '%'],
                 'selectors'  => [
                     '{{WRAPPER}} .betterdocs-modalwindow .betterdocs-feedback-form #feedback_form_submit_btn' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_responsive_control(
+            'feedback_form_button_align',
+            [
+                'label'     => __('Alignment', 'betterdocs'),
+                'type'      => Controls_Manager::CHOOSE,
+                'options'   => [
+                    'left'    => [
+                        'title' => __('Left', 'betterdocs'),
+                        'icon'  => 'eicon-text-align-left',
+                    ],
+                    'center'  => [
+                        'title' => __('Center', 'betterdocs'),
+                        'icon'  => 'eicon-text-align-center',
+                    ],
+                    'right'   => [
+                        'title' => __('Right', 'betterdocs'),
+                        'icon'  => 'eicon-text-align-right',
+                    ],
+                    'justify' => [
+                        'title' => __('Justified', 'betterdocs'),
+                        'icon'  => 'eicon-text-align-justify',
+                    ],
+                ],
+                'default'   => '',
+                'selectors' => [
+                    '{{WRAPPER}} .betterdocs-modalwindow .betterdocs-feedback-form .feedback-from-button' => 'text-align: {{VALUE}};',
                 ],
             ]
         );
@@ -371,7 +435,7 @@ class BetterDocs_Elementor_Feedback extends Widget_Base {
                             </a>
                             <h2><?php echo $settings['feedback_form_title']; ?></h2>
                             <div class="modal-content-inner">
-                                <?php echo do_shortcode('[betterdocs_feedback_form]'); ?>
+                                <?php echo do_shortcode("[betterdocs_feedback_form button_text='{$settings['feedback_form_button_text']}']"); ?>
                             </div>
                         </div>
                     </div>
@@ -383,7 +447,8 @@ class BetterDocs_Elementor_Feedback extends Widget_Base {
 
     public function feedback_icon () {
         $settings = $this->get_settings_for_display();
-        $color = $settings['feedback_icon_color'];
+        // $color = $settings['feedback_icon_color'];
+        $color = '';
         ?>
         <svg xmlns="http://www.w3.org/2000/svg" width="32px"
              viewBox="0 0 64 64">

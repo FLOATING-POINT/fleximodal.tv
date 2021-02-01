@@ -10,21 +10,26 @@ use \Elementor\Group_Control_Typography as Group_Control_Typography;
 use \Elementor\Group_Control_Background;
 use \Elementor\Widget_Base as Widget_Base;
 
-class BetterDocs_Elementor_Search_Form extends Widget_Base {
+class BetterDocs_Elementor_Search_Form extends Widget_Base
+{
 
-    public function get_name () {
+    public function get_name()
+    {
         return 'betterdocs-search-form';
     }
 
-    public function get_title () {
+    public function get_title()
+    {
         return __('Doc Search Form', 'betterdocs');
     }
 
-    public function get_categories () {
-        return ['betterdocs-elements'];
+    public function get_categories()
+    {
+        return ['betterdocs-elements', 'docs-archive'];
     }
 
-    public function get_icon () {
+    public function get_icon()
+    {
         return 'betterdocs-icon-search';
     }
 
@@ -38,7 +43,8 @@ class BetterDocs_Elementor_Search_Form extends Widget_Base {
      * @access public
      *
      */
-    public function get_keywords () {
+    public function get_keywords()
+    {
         return [
             'knowledgebase',
             'knowledge Base',
@@ -52,12 +58,14 @@ class BetterDocs_Elementor_Search_Form extends Widget_Base {
         ];
     }
 
-    public function get_custom_help_url() {
+    public function get_custom_help_url()
+    {
         return 'https://betterdocs.co/docs/single-doc-in-elementor';
     }
 
 
-    protected function _register_controls () {
+    protected function _register_controls()
+    {
 
         /**
          * ----------------------------------------------------------
@@ -126,7 +134,7 @@ class BetterDocs_Elementor_Search_Form extends Widget_Base {
         $this->add_control(
             'search_field_text_color',
             [
-                'label'     => esc_html__('Field Color', 'betterdocs'),
+                'label'     => esc_html__('Text Color', 'betterdocs'),
                 'type'      => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .betterdocs-searchform .betterdocs-search-field' => 'color: {{VALUE}};',
@@ -198,7 +206,7 @@ class BetterDocs_Elementor_Search_Form extends Widget_Base {
                     ],
                 ],
                 'selectors'  => [
-                    '{{WRAPPER}} .betterdocs-searchform svg.docs-search-icon' => 'height: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .betterdocs-searchform svg.docs-search-icon' => 'width: {{SIZE}}{{UNIT}}; height: auto;',
                 ],
             ]
         );
@@ -229,7 +237,7 @@ class BetterDocs_Elementor_Search_Form extends Widget_Base {
                 'label'     => esc_html__('Border Color', 'betterdocs'),
                 'type'      => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .docs-search-loader, {{WRAPPER}} .docs-search-close .close-border' => 'stroke: {{VALUE}};',
+                    '{{WRAPPER}} .docs-search-loader, {{WRAPPER}} .docs-search-close .close-border' => 'fill: {{VALUE}};',
                 ],
             ]
         );
@@ -382,9 +390,9 @@ class BetterDocs_Elementor_Search_Form extends Widget_Base {
         );
 
         $this->add_control(
-            'search_result_box_item_count',
+            'search_result_box_item_category',
             [
-                'label'     => esc_html__('Count', 'betterdocs'),
+                'label'     => esc_html__('Category', 'betterdocs'),
                 'type'      => Controls_Manager::HEADING,
                 'separator' => 'before'
             ]
@@ -393,15 +401,15 @@ class BetterDocs_Elementor_Search_Form extends Widget_Base {
         $this->add_group_control(
             Group_Control_Typography::get_type(),
             [
-                'name'     => 'result_box_item_count_typography',
+                'name'     => 'result_box_item_category_typography',
                 'selector' => '{{WRAPPER}} .betterdocs-live-search .docs-search-result li span'
             ]
         );
 
         $this->add_control(
-            'result_box_item_count_color',
+            'result_box_item_category_color',
             [
-                'label'     => esc_html__('Item Color', 'betterdocs'),
+                'label'     => esc_html__('Color', 'betterdocs'),
                 'type'      => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .betterdocs-live-search .docs-search-result li span' => 'color: {{VALUE}};',
@@ -506,16 +514,17 @@ class BetterDocs_Elementor_Search_Form extends Widget_Base {
 
     }
 
-    protected function render () {
+    protected function render()
+    {
 
         $settings = $this->get_settings_for_display();
         $shortcode = sprintf('[betterdocs_search_form]', apply_filters('eael_betterdocs_search_form_params', []));
         echo do_shortcode(shortcode_unautop($shortcode));
     }
 
-    public function render_plain_content () {
+    public function render_plain_content()
+    {
         // In plain mode, render without shortcode
         echo '[betterdocs_search_form]';
     }
-
 }

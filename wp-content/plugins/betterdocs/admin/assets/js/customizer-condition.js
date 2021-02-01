@@ -67,7 +67,6 @@
 				$(selectReset).on( 'click', function (e) {
 					e.preventDefault();
 					var dimensionId = $(this).parent('.betterdocs-select').attr('id');
-					console.log(dimensionId);
 					$('.'+dimensionId).each(function() {
 						var dimensionDefaultVal = $(this).data('default-val');
 						$(this).val(dimensionDefaultVal).trigger('change');
@@ -100,6 +99,9 @@
 				customizer_controls_show(setting,'betterdocs_doc_page_article_list_hover_color','layout-1,layout-4');
 				customizer_controls_show(setting,'betterdocs_doc_page_article_list_bg_color','layout-1,layout-4');
 				customizer_controls_show(setting,'betterdocs_doc_page_article_list_font_size','layout-1,layout-4');
+				customizer_controls_show(setting,'betterdocs_doc_page_subcategory_article_list_color','layout-1,layout-4');
+				customizer_controls_show(setting,'betterdocs_doc_page_subcategory_article_list_hover_color','layout-1,layout-4');
+				customizer_controls_show(setting,'betterdocs_doc_page_subcategory_article_list_icon_color','layout-1,layout-4');
 				customizer_controls_show(setting,'betterdocs_doc_page_list_icon_color','layout-1');
 				customizer_controls_show(setting,'betterdocs_doc_page_list_icon_font_size','layout-1');
 				customizer_controls_show(setting,'betterdocs_doc_page_article_list_margin','layout-1,layout-4');
@@ -168,6 +170,9 @@
 				customizer_controls_show(setting,'betterdocs_doc_single_3_post_content_padding_right','layout-3');
 				customizer_controls_show(setting,'betterdocs_doc_single_3_post_content_padding_bottom','layout-3');
 				customizer_controls_show(setting,'betterdocs_doc_single_3_post_content_padding_left','layout-3');
+				customizer_controls_show(setting,'betterdocs_sticky_toc_width', 'layout-1');
+				customizer_controls_show(setting,'betterdocs_sticky_toc_zindex', 'layout-1');
+				customizer_controls_show(setting,'betterdocs_sticky_toc_margin_top', 'layout-1');
 			});
 			wp.customize( 'betterdocs_post_reactions', function( setting ) {
 				customizer_conditional_setting_return_toggle(setting,'betterdocs_post_reactions_text',true);

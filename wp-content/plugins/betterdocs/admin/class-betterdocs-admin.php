@@ -127,8 +127,7 @@ class BetterDocs_Admin {
 		
 		wp_enqueue_script( 'wp-color-picker' );
 		
-		if ( $hook == 'betterdocs_page_betterdocs-settings' ) {
-			
+		if ( $hook == 'betterdocs_page_betterdocs-settings' || $hook == 'betterdocs_page_betterdocs-setup' ) {
 			wp_enqueue_script(
 				$this->plugin_name . '-select2',
 				BETTERDOCS_ADMIN_URL . 'assets/js/select2.min.js', 
@@ -392,32 +391,24 @@ class BetterDocs_Admin {
 			return;
 		}
 
-		$saved_settings = BetterDocs_DB::get_settings();
+		$saved_settings = BetterDocs_DB::get_settings(); 
+		$docs_url = '';
 		if( isset( $saved_settings['builtin_doc_page'] ) && intval( $saved_settings['builtin_doc_page'] ) ) {
-			$docs_url = isset( $saved_settings['docs_slug'] ) && ! empty( $saved_settings['docs_slug'] ) ? home_url( $saved_settings['docs_slug'] ) : false;
-			if( $docs_url ) {
-				// Add an option to visit the store.
-				$admin_bar->add_node(
-					array(
-						'parent' => 'site-name',
-						'id'     => 'view-docs',
-						'title'  => __( 'Visit Documentation', 'betterdocs' ),
-						'href'   => $docs_url,
-					)
-				);
-			}
+			$docs_url = get_post_type_archive_link( BetterDocs_Docs_Post_Type::$post_type );
 		} elseif (isset( $saved_settings['docs_page'] ) && intval( $saved_settings['docs_page'] )) {
-			$docs_page_url = isset( $saved_settings['docs_page'] ) && ! empty( $saved_settings['docs_page'] ) ? get_page_link($saved_settings['docs_page']) : false;
+			$docs_url = !empty( $saved_settings['docs_page'] ) ? get_page_link($saved_settings['docs_page']) : false;
+		}
+
+		if( $docs_url ) {
 			$admin_bar->add_node(
 				array(
 					'parent' => 'site-name',
 					'id'     => 'view-docs',
 					'title'  => __( 'Visit Documentation', 'betterdocs' ),
-					'href'   => $docs_page_url,
+					'href'   => $docs_url,
 				)
 			);
 		}
-
 	}
 
 }

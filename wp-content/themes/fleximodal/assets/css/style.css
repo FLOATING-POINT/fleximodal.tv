@@ -104,7 +104,6 @@ nav div.mb > div > div{
 	margin: 6%;
 	padding: 7% 10%;	
 	cursor:pointer;
-	font-size: 0.9rem;
     left:0px;
     top:0px;
     transition: left 0.25s ease, top 0.25s ease;
@@ -136,7 +135,6 @@ nav div.mb > div > div{
     left:0px;
     top:0px;
     transition: left 0.25s ease, top 0.25s ease;
-
 }
 .channel-menu {
     width: 100%;
@@ -146,7 +144,6 @@ nav div.mb > div > div{
 }
 .btn.about,
 .channel-menu > div{
-    /*flex: 2;*/
     display:inline-block;
 	border:1px solid #7d7f80;
 	background:#000;
@@ -214,12 +211,10 @@ nav div.mb > div > div{
 .schedule-btn .btn:hover::after,
 .schedule-btn.active .btn::after,  
 .fullscreen-btn .btn:hover::after {
-   /* background: #fff;*/
     left:5px;
     top:5px;
     transition: left 0.2s ease, top 0.2s ease, background 0.2s ease;
 }
-
 .channel-menu > div.active a{
      color:#000;
 }
@@ -351,21 +346,7 @@ nav .separator div{
     overflow: hidden;
     /*max-width: 1400px;*/
 }
-.header{
-	/*max-width: 1200px;*/
-}
-#iframe-youtube-player{
-	min-height: 110%;
-    width: 110%;
-    margin-top: -5%;
-    margin-left: -5%;
-}
-.section-inner{
-    height: 86%;
-    clip-path: inset(10px 20px 10px 20px round 5rem);
-    -webkit-clip-path: inset(10px 20px 10px 20px round 5rem);
-    position: relative;
-}
+
 .section-inner:after {
     content: '';
     position: absolute;
@@ -373,7 +354,6 @@ nav .separator div{
     left: 0%;
     width: 100%;
     height: 100%;
-   /* box-shadow: inset 0px 0px 60px 60px rgba(0,0,0,1);*/
 }
 .logo-pause{
 	width:100%;
@@ -397,55 +377,6 @@ nav .separator div{
 .logo-pause > div > div:last-child{
 	padding:0.75rem 0;
 }
-.channel-controls{
-    width:100%;
-    height: 15%;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    z-index: 20000;    
-	text-transform: uppercase;
-}
-.channel-controls > div{
-	flex:0 0 calc(100% - 40px);
-	margin: 0 20px;
-	justify-content: space-between;
-	align-items: center;
-	display: flex;   
-	height:100%; 
-}
-.channel-controls .schedule-btn,
-.channel-controls .fullscreen-btn,
-.channel-controls .partners{
-	flex: 1;
-    max-width: 230px;
-
-}
-
-.channel-controls .partners{
-     max-width: 400px;
-}
-
-.partners{
-    text-align: center;
-}
-.partners > div{
-    text-transform: uppercase;
-    color: #000;
-    margin: 0.2rem;
-    display:inline-block;
-}
-.partners > div a{
-    color: #000;
-    text-shadow:
-    -1px -1px 0 #7d7f80,  
-    1px -1px 0 #7d7f80,
-    -1px 1px 0 #7d7f80,
-    1px 1px 0 #7d7f80;
-}
-.channel-controls .fullscreen-btn{
-}
-
 .social{
     width:100%;
     text-align:center;
@@ -457,106 +388,6 @@ nav .separator div{
     width: 35px;
     height: 35px;
     background: url(../images/insta_white.svg) no-repeat;
-
-}
-div.crew{
-    width:80% !important;
-    display: flex;
-    /* align-items: center; */
-    justify-content: center;
-}
-.crew > a{
-    margin:0.2rem 0.5rem; 
-}
-.crew .crackmagazine{
-    display: inline-block;
-    width: 100px;
-    height: 35px;
-    background: url(../images/crackmag.png) no-repeat;
-    background-size: contain;
-    background-position:center;
-}
-.crew .multimodal{
-    display: inline-block;
-    width: 30px;
-    height: 35px;
-    background: url(../images/MM-INV-2.svg) no-repeat;
-    background-size: contain;
-    background-position:center;
-}
-.crew .wigflex{
-    display: inline-block;
-    width: 30px;
-    height: 35px;
-    background: url(../images/wigflex-logo_INV.png) no-repeat;
-    background-size: contain;
-    background-position:center;
-}
-.partners .red.dot{
-	background:red;
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    display:inline-block;
-}
-.schedule-btn .btn,
-.fullscreen-btn .btn{
-    -webkit-border-radius: 0.5em;
-	-moz-border-radius: 0.5em;
-	border-radius:0.5em;
-	border:1px solid #7d7f80;
-	/*margin: 6%;*/
-	padding:6%;	
-	cursor:pointer;
-	font-size: 0.9rem;
-	text-align: center;
-    margin: 0 auto;
-    position: relative;
-    background:#000;
-    max-width: 230px;
-    max-height: 50px;
-    left:0px;
-    top:0px;
-    transition: left 0.2s ease, top 0.2s ease;
-}
-.schedule-btn .btn::after,
-.fullscreen-btn .btn::after {
-	content: '';
-	position: absolute;
-	width: 100%;
-	height: 100%;
-	border: 1px solid #7d7f80;
-	left: 3px;
-	top: 3px;
-	z-index: -1;
-    -webkit-border-radius: 0.5em;
-	-moz-border-radius:  0.5em;
-	border-radius: 0.5em;
-	text-align: center;
-    transition: left 0.2s ease, top 0.2s ease;
-}
-.schedule-btn .btn:hover,
-.fullscreen-btn .btn:hover{
-	background: #000;
-	color:#fff;
-    left:-2px;
-    top:-2px;
-    transition: left 0.2s ease, top 0.2s ease, background 0.2s ease;
-}
-.schedule-btn.active .btn:hover,
-.fullscreen-btn.active .btn:hover{
-    left:3px;
-    top:3px;
-    background: #fff;
-    color:#000;
-}
-.schedule-btn .btn:hover::after,
-.fullscreen-btn .btn:hover::after{
-    background: #000;
-    color:#fff;
-    left:5px;
-    top:5px;
-    transition: left 0.2s ease, top 0.2s ease, background 0.2s ease;
 }
 nav{
     position: absolute;
@@ -665,10 +496,8 @@ a:active {
     height: 85%;
     overflow: hidden;
     width: 100%;
-   /*visibility: hidden;*/
     display: none;
     padding: 6px 20px;
-   /* display:flex;*/
 }
 .tv-guide{
     position: absolute;
@@ -678,12 +507,8 @@ a:active {
     width: 100%;
     display: none;
     padding: 6px 20px;
-   /* display:flex;*/
 }
-
-
 .tv-guide .inner{
-	/*width:100%;*/
 	height:100%;
 	flex: 0 0 calc(100% - 2.5rem);
     position: relative;
@@ -795,89 +620,6 @@ a:active {
     background-size: contain;
     background-position:center;   
 }
-.schedule .inner section{
-    display:flex;
-    justify-content: center;
-    align-items: stretch;
-    height: 100%;
-}
-.schedule .inner section > div{
-    flex:1;
-    height:100%;
-
-}
-.schedule .inner section .chnl-header > div:last-child{
-    font-family: ATCTimberlineRegular, monospace, courier, fixed;
-    font-size:18px !important;
-    line-height:1.3;
-    padding:1rem;
-}
-.schedule .inner section .chnl-header > div:first-child{
-    max-height: 50%;
-    height: 50%;
-    background-position: center;
-    background-size: cover;
-    overflow:hidden;
-}
-.schedule .inner section > div:first-child{
-    border-right:2px white solid;
-}
-.schedule .inner section .chnl-img{
-    max-width:100%;
-    width:100%;
-}
-.schedule .inner section div.chnl-logo{
-    width:50%;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size:80% 80%;
-    padding:1rem;
-}
-.schedule .inner section .t{
-    display:flex;
-    justify-content: center;  
-    align-items: stretch;
-    text-align: center;
-    border-top:2px white solid;
-    border-bottom:2px white solid;
-}
-.schedule .inner section .t > div{
-    flex:1;
-    padding: 1rem 0;
-    font-family: ATCTimberlineBold, monospace, courier, fixed;
-    font-size:20px !important;
-    font-weight:bold;
-}
-.schedule .inner section .t > div:first-child{
-    display: flex;
-    justify-content: center;
-}
-.schedule .inner section .t > div > div{
-    align-self:center;
-}
-.schedule .inner section .t > div:first-child{
-    color:#000;
-    background:#fff;
-}
-.schedule .inner section div.chnl-schedule{
-    background:#fff;
-    color:#000;
-    padding:1rem;
-        overflow: scroll;
-}
-.schedule .inner section div.chnl-schedule ul li{
-    width:100%;
-    margin: 1rem 0;
-    text-transform:uppercase;
-    font-size:14px !important;
-}
-.schedule .inner section div.chnl-schedule ul li:first-child{
-    font-family: ATCTimberlineBold, monospace, courier, fixed;
-    text-align:center;
-    border-bottom:1px solid #000;
-    padding:0 0 0.5rem 0;
-}
-
 .tv-guide .channels{
 	display:flex;
 }
@@ -1058,11 +800,6 @@ section .broadcasts > div{
 .mb{
     display:none;
 }
-.header .lbl span {
-    padding: 13px 16px 10px 16px !important;
-    font-size: 0.9rem !important;
-}
-
 @media ( max-width: 800px ) {
 
     body{
@@ -1087,16 +824,6 @@ section .broadcasts > div{
         left:0;
         top: 35px;
     }
-    #channel-logo-mark {
-        flex: 2 !important;
-        text-align: center;
-    }
-    div.channel-msgs .ticker__item{
-        font-size:0.8rem !important;
-    }
-    div#channel-logo-mark img{
-        width:100%;
-    }
     #channel{
         width: 100%;
         height: 100%;
@@ -1107,10 +834,7 @@ section .broadcasts > div{
     .tv-guide, .schedule, .aboutFMTV{
         width:100%;
         padding:0;
-    }
-    .tv-guide, .schedule, .aboutFMTV{
-        flex: 0 0 calc(100%);
-    } 
+    }    
     .tv-guide .channels {
         flex-direction: column;
     }   
@@ -1138,12 +862,7 @@ section .broadcasts > div{
         align-self: flex-end;
         margin:2% 0;
     }
-
-    .schedule{
-
-    } 
     .aboutFMTV{
-
        height:auto;
     }
     .aboutFMTV .inner{
@@ -1165,9 +884,7 @@ section .broadcasts > div{
     section .channel-header .logo{
         -webkit-align-self: flex-end;
         align-self: flex-end;
-
-    }
-   
+    }   
     section .channel-header .logo img {
         max-width: 50%;
     }
@@ -1185,18 +902,14 @@ section .broadcasts > div{
         width:100%;
         margin: 0;
     }
-    .schedule-btn .btn, .fullscreen-btn .btn{
-        font-size:0.5rem;
-    }
+   
     .channel-controls > div{
-        flex: 0 0 calc(100%);
         margin: 0 10px 10px 10px;
     }
     .partners .red.dot{
         display:none;
     }   
     .schedule .inner, .aboutFMTV .inner {
-        /* width: 100%; */
         height: 100%;
         flex: 0 0 calc(100%);
         position: relative;
@@ -1224,9 +937,7 @@ section .broadcasts > div{
         overflow:auto;
         min-height: 200px;
     }
-    .partners{
-        font-size:0.5rem;
-    }
+   
     .channel-controls{
         bottom: 0px;
         height:56px;
@@ -1277,9 +988,6 @@ section .broadcasts > div{
     div.crew a{
         flex:1;
     }
-    div.crew a:last-child{
-        flex:2;
-    }
     .channel-menu {
         width: 90%;
         margin: 0 auto;
@@ -1301,8 +1009,8 @@ section .broadcasts > div{
      .section-inner{
         top: 70px;
         height:36%;
-          clip-path: inset(10px 20px 10px 20px round 2.5rem);
-        -webkit-clip-path: inset(10px 20px 10px 20px round 2.5rem);
+          clip-path: inset(10px 20px 10px 20px);
+        -webkit-clip-path: inset(10px 20px 10px 20px);
         
      }
     }

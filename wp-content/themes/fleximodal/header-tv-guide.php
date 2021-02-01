@@ -31,10 +31,11 @@
 
 	<body <?php body_class(); ?> id="<?php the_title(); ?>">
 
-
-
 		<?php
 		wp_body_open();
+
+		global $broadcast_channel_id; // this in used for single broadcasts
+
 		?>
 		<div class="dt">
 			<nav>
@@ -176,14 +177,16 @@
 			
 		</div>
 
-		<header class="header">			
+		<header class="header">
 
-			<?php
+				<?php  if(get_post_type() == 'broadcast'): ?>
 
-			// Check rows exists.
-			//if( have_rows('scrolling_news') ): ?>
+				<div class="lbl on-demand"><span>ON DEMAND</span></div>
 
-				<div class="lbl"><span>LIVE</span></div>
+				<?php else: ?>
+
+					<div class="lbl live"><span>LIVE</span></div>
+				<?php endif; ?>
 
 				<div class="channel-msgs">
 
@@ -210,14 +213,53 @@
 				<?php //endif; ?>
 
 				<div id="channel-logo-mark">
-					<?php 
-					$image = get_field('channel_logo_mark');
-					if( !empty( $image ) ): ?>
-					    <img src="<?php echo esc_url($image['url']); ?>" alt="<?php echo esc_attr($image['alt']); ?>" title="Channel <?php echo esc_attr($image['title']); ?>" />
+
+					<?php  if(get_post_type() == 'broadcast'): ?>
+
+					<?php 					
+
+					// args
+					$args = array(
+						'post_type'	=> 'channel',
+						'meta_query' => array(
+							array(
+								'key' => 'channel_playlists_%_channel_broadcasts',
+								'value' => '"' . get_the_ID() . '"',
+								'compare' => 'LIKE'
+							)
+						)
+					);
+					 
+					
+					$the_query = new WP_Query( $args ); ?>			
+					
+
+					<?php if( $the_query->have_posts() ): ?>
+						
+						<?php while ( $the_query->have_posts() ) : $the_query->the_post(); ?>
+
+							<?php $broadcast_channel_id = get_the_ID(); ?>
+
+
+							<?php $image = get_field('channel_logo_mark');
+							if( !empty( $image ) ): ?>
+							    <span><img src="<?php echo esc_url($image['url']); ?>" alt="<?php echo esc_attr($image['alt']); ?>" title="Channel <?php echo esc_attr($image['title']); ?>" /></span>
+							<?php endif; ?>
+
+						<?php endwhile; ?>
+						
 					<?php endif; ?>
-				</div>
+					 
+					<?php wp_reset_query();  // Restore global post data stomped by the_post(). ?>
 
-			
-			
+					<?php else: ?>
+
+						<?php 
+						$image = get_field('channel_logo_mark');
+						if( !empty( $image ) ): ?>
+						    <span><img src="<?php echo esc_url($image['url']); ?>" alt="<?php echo esc_attr($image['alt']); ?>" title="Channel <?php echo esc_attr($image['title']); ?>" /></span>
+						<?php endif; ?>
+
+					<?php endif; ?>
+				</div>		
 		</header>
-

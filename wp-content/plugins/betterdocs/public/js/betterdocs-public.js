@@ -97,7 +97,7 @@
       });
     }
 
-    var betterdocsToc = $(".betterdocs-entry-content .betterdocs-toc");
+    var betterdocsToc = $(".betterdocs-toc");
     var betterdocsSidebar = $("#betterdocs-sidebar");
     if (betterdocsToc.length && betterdocsSidebar.length) {
       // create an instance of TOC
@@ -225,7 +225,7 @@
     if (currentCatList.length) {
       currentCatList.show().addClass("show");
     }
-    catHeading.click(function() {
+    catHeading.click(function(e) {
       var $this = $(this);
       sidebarContent.find(".active-title").removeClass("active-title");
       $this.toggleClass("active-title");
@@ -347,7 +347,8 @@
           message_name: message_name.val(),
           message_email: message_email.val(),
           message_subject: message_subject.val(),
-          message_text: message_text.val()
+          message_text: message_text.val(),
+          security: betterdocspublic.nonce,
         },
         beforeSend: function() {},
         success: function(data) {

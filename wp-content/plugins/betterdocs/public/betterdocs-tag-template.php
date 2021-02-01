@@ -40,7 +40,6 @@ $object = get_queried_object();
 					<?php 
 						$args = array(
 							'post_type' => 'docs',
-							'post_status' => 'publish',
 							'posts_per_page' => -1,
 							'tax_query' => array(
 								array(

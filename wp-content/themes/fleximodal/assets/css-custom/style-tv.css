@@ -46,20 +46,16 @@ body{
     width:100%;
     height:100%;
     background: #000;
-    font-smooth: never;
     font-family: ATCTimberlineBold, monospace, courier, fixed;
-    font-size: 18px;
+    font-size: 16px;
     color: #ffffff;
     margin: 0 auto !important;
-  /*max-width: 1400px;*/
     position: relative;
 }
-
-
 input,
 textarea{
     font-family: ATCTimberlineBold, monospace, courier, fixed;
-    font-size: 18px !important;
+    font-size: 16px !important;
 	-webkit-tap-highlight-color:transparent;
 }
 
@@ -75,22 +71,15 @@ textarea{
     height:100%;
     flex-wrap: wrap;
  }
-
 nav div.mb > div{
-
     width: 100%;
  }
 nav div.mb > div > div{
     width:100%;
-
 }
-
 .fm-logo-back{
 	width:412px;
 	height:155px;
-	max-width:50%;
-	max-height:50%;
-    font-smooth: never;
     line-height: 20px;
     font-size: 16px;
     -webkit-font-smoothing : none;
@@ -106,7 +95,6 @@ nav div.mb > div > div{
     margin-top: -77px;
 	left:50%;
 	top:50%;
-
 }
 .fm-logo-menu{
 	width: 100%;
@@ -131,7 +119,6 @@ nav div.mb > div > div{
 	display:block;
 }
 .channels-controller{
-
 	text-align: center;
 }
 .btn.tv-guide-btn{
@@ -142,7 +129,6 @@ nav div.mb > div > div{
 	margin: 6%;
 	padding: 7% 10%;	
 	cursor:pointer;
-	font-size: 0.9rem;
     left:0px;
     top:0px;
     transition: left 0.25s ease, top 0.25s ease;
@@ -174,7 +160,6 @@ nav div.mb > div > div{
     left:0px;
     top:0px;
     transition: left 0.25s ease, top 0.25s ease;
-
 }
 .channel-menu {
     width: 100%;
@@ -236,6 +221,8 @@ nav div.mb > div > div{
 .channel-menu > div:hover, 
 .channel-menu > div.active, 
 .tv-guide-btn.active,
+.on-demand-btn .btn:hover, 
+.on-demand-btn.active .btn,
 .schedule-btn .btn:hover, 
 .schedule-btn.active .btn,
 .fullscreen-btn .btn:hover {
@@ -250,7 +237,9 @@ nav div.mb > div > div{
 .tv-guide-btn.active::after,
 .channel-menu > div:hover::after, 
 .schedule-btn .btn:hover::after,
-.schedule-btn.active .btn::after,  
+.schedule-btn.active .btn::after, 
+.on-demand-btn .btn:hover::after,
+.on-demand-btn.active .btn::after,  
 .fullscreen-btn .btn:hover::after {
    /* background: #fff;*/
     left:5px;
@@ -290,7 +279,7 @@ section .channel .future {
 	left: 0px;
 	top: 0px;
 }
-
+.on-demand-btn.active:hover,
 .btn.about.active:hover,
 .tv-guide-btn.active:hover{
    background:#fff;
@@ -300,8 +289,13 @@ section .channel .future {
     transition: left 0.25s ease, top 0.25s ease, background 0.25s ease;
 }
 
+.on-demand-btn.active:hover{
+    background:#000;
+}
+
 .channel-menu > div.current,
 .schedule-btn.active .btn,
+.on-demand-btn.active .btn,
 .btn.about.active,
 .tv-guide-btn.active,
 .channel-menu > div.active,
@@ -313,8 +307,12 @@ section .channel .future {
     left:3px;
     top:3px;
 }
+.on-demand-btn.active .btn{
+    background:#ccda82;
+}
 .channel-menu > div.current::after,
 .schedule-btn.active .btn::after,
+.on-demand-btn.active .btn::after,
 .btn.about.active::after,
 .tv-guide-btn.active::after,
 .channel-menu > div.active::after{
@@ -387,21 +385,18 @@ nav .separator div{
     height:100%;
     background: #000;
     overflow: hidden;
-    /*max-width: 1400px;*/
-}
-.header{
-	/*max-width: 1200px;*/
 }
 #iframe-youtube-player{
-	min-height: 110%;
-    width: 110%;
-    margin-top: -5%;
-    margin-left: -5%;
+	min-height: 120%;
+    width: 120%;
+    margin-top: -10%;
+    margin-left: -10%;
 }
 .section-inner{
     height: 86%;
-    clip-path: inset(10px 20px 10px 20px round 5rem);
-    -webkit-clip-path: inset(10px 20px 10px 20px round 5rem);
+    overflow:hidden;
+    clip-path: inset(10px 20px 10px 20px);
+    -webkit-clip-path: inset(10px 20px 10px 20px);
     position: relative;
 }
 .section-inner:after {
@@ -411,7 +406,6 @@ nav .separator div{
     left: 0%;
     width: 100%;
     height: 100%;
-   /* box-shadow: inset 0px 0px 60px 60px rgba(0,0,0,1);*/
 }
 .logo-pause{
 	width:100%;
@@ -445,32 +439,32 @@ nav .separator div{
 	text-transform: uppercase;
 }
 .channel-controls > div{
-	flex:0 0 calc(100% - 40px);
 	margin: 0 20px;
 	justify-content: space-between;
 	align-items: center;
 	display: flex;   
 	height:100%; 
 }
-.channel-controls .schedule-btn,
+.channel-controls .schedule-btns,
 .channel-controls .fullscreen-btn,
 .channel-controls .partners{
 	flex: 1;
-    max-width: 230px;
-
 }
-
-.channel-controls .partners{
-     max-width: 400px;
+.channel-controls .schedule-btns{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
 }
-
+.channel-controls .schedule-btns > div{
+   margin-right:2%;
+}
 .partners{
     text-align: center;
 }
 .partners > div{
     text-transform: uppercase;
     color: #000;
-    margin: 0.2rem;
+    margin: 0 0.2rem 0.2rem 0.2rem;
     display:inline-block;
 }
 .partners > div a{
@@ -481,9 +475,6 @@ nav .separator div{
     -1px 1px 0 #7d7f80,
     1px 1px 0 #7d7f80;
 }
-.channel-controls .fullscreen-btn{
-}
-
 .social{
     width:100%;
     text-align:center;
@@ -495,24 +486,14 @@ nav .separator div{
     width: 35px;
     height: 35px;
     background: url(../images/insta_white.svg) no-repeat;
-
 }
 div.crew{
     width:80% !important;
     display: flex;
-    /* align-items: center; */
     justify-content: center;
 }
 .crew > a{
     margin:0.2rem 0.5rem; 
-}
-.crew .crackmagazine{
-    display: inline-block;
-    width: 100px;
-    height: 35px;
-    background: url(../images/crackmag.png) no-repeat;
-    background-size: contain;
-    background-position:center;
 }
 .crew .multimodal{
     display: inline-block;
@@ -531,7 +512,6 @@ div.crew{
     background-position:center;
 
 }
-
 .partners .red.dot{
 	background:red;
     width: 10px;
@@ -539,26 +519,38 @@ div.crew{
     border-radius: 50%;
     display:inline-block;
 }
+.on-demand-btn .btn,
 .schedule-btn .btn,
 .fullscreen-btn .btn{
     -webkit-border-radius: 0.5em;
 	-moz-border-radius: 0.5em;
 	border-radius:0.5em;
 	border:1px solid #7d7f80;
-	/*margin: 6%;*/
-	padding:6%;	
+	padding:1rem;	
 	cursor:pointer;
-	font-size: 0.9rem;
 	text-align: center;
     margin: 0 auto;
     position: relative;
     background:#000;
-    max-width: 230px;
-    max-height: 50px;
     left:0px;
     top:0px;
     transition: left 0.2s ease, top 0.2s ease;
 }
+ .schedule-btn .btn, 
+.fullscreen-btn .btn,
+.on-demand-btn .btn{
+    font-size:90%;
+}
+.fullscreen-btn .btn{
+    max-width:225px;
+    margin-right: 0;
+}
+.on-demand-btn .btn{
+    padding: 1rem;
+    color:#ccda82;
+    border:1px solid #ccda82;
+}
+.on-demand-btn .btn::after,
 .schedule-btn .btn::after,
 .fullscreen-btn .btn::after {
 	content: '';
@@ -575,6 +567,10 @@ div.crew{
 	text-align: center;
     transition: left 0.2s ease, top 0.2s ease;
 }
+.on-demand-btn .btn:after{
+    border: 1px solid #ccda82;
+}
+.on-demand-btn .btn:hover,
 .schedule-btn .btn:hover,
 .fullscreen-btn .btn:hover{
 	background: #000;
@@ -583,6 +579,10 @@ div.crew{
     top:-2px;
     transition: left 0.2s ease, top 0.2s ease, background 0.2s ease;
 }
+.on-demand-btn .btn:hover{
+    color:#ccda82;
+}
+.on-demand-btn.active .btn:hover.
 .schedule-btn.active .btn:hover,
 .fullscreen-btn.active .btn:hover{
     left:3px;
@@ -590,6 +590,12 @@ div.crew{
     background: #fff;
     color:#000;
 }
+.on-demand-btn.active .btn:hover{
+    color: #ccda82;
+    transition:none;
+}
+.on-demand-btn.active .btn:hover::after,
+.on-demand-btn .btn:hover::after,
 .schedule-btn .btn:hover::after,
 .fullscreen-btn .btn:hover::after{
     background: #000;
@@ -598,6 +604,8 @@ div.crew{
     top:5px;
     transition: left 0.2s ease, top 0.2s ease, background 0.2s ease;
 }
+
+
 nav{
     position: absolute;
     z-index: 2000;
@@ -697,18 +705,17 @@ a:active {
 .colour6bg, .cyanbg       {background-color: #00ffff;}
 .colour7bg, .whitebg     {background-color: #ffffff;}
 
-
+#on-demand-schedule,
 .schedule,
-.aboutFMTV{
+.aboutFMTV,
+.loader{
 	position: absolute;
     z-index: 9999;
     height: 85%;
     overflow: hidden;
     width: 100%;
-   /*visibility: hidden;*/
     display: none;
     padding: 6px 20px;
-   /* display:flex;*/
 }
 .tv-guide{
     position: absolute;
@@ -718,10 +725,7 @@ a:active {
     width: 100%;
     display: none;
     padding: 6px 20px;
-   /* display:flex;*/
 }
-
-
 .tv-guide .inner{
 	/*width:100%;*/
 	height:100%;
@@ -731,9 +735,10 @@ a:active {
     border:5px solid blue;
     border-radius:5rem;
 }
+.on-demand-schedule .inner,
 .schedule .inner,
-.aboutFMTV .inner{
-    /*width:100%;*/
+.aboutFMTV .inner,
+.loader .inner{
     height:100%;
     flex: 0 0 calc(100% - 2.5rem);
     position: relative;
@@ -741,6 +746,37 @@ a:active {
     border:4px solid white;
     border-radius:5rem;
     overflow: hidden;
+}
+.loader .inner{
+    border:4px solid black;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0;
+}
+.loader .inner > div{
+    max-width:30%;  
+    position: absolute;  
+    width: 169px;
+    height: 61px;
+}
+.loader .inner .p1{
+    background: url(../images/Fleximodal_TV_Logo_2_white_p1.svg) no-repeat;
+}
+.loader .inner .p2{
+    background: url(../images/Fleximodal_TV_Logo_2_white_p2.svg) no-repeat;
+}
+.loader .inner .p3{
+    background: url(../images/Fleximodal_TV_Logo_2_white_p3.svg) no-repeat;
+}
+.loader .inner .p4{
+    background: url(../images/Fleximodal_TV_Logo_2_white_p4.svg) no-repeat;
+}
+.loader .inner .p5{
+    background: url(../images/Fleximodal_TV_Logo_2_white_p5.svg) no-repeat;
+}
+#on-demand-schedule .inner{
+     border:4px solid #ccda82;
 }
 .aboutFMTV .inner{
     flex: 0 0 calc(100% - 1.5rem);
@@ -833,6 +869,7 @@ a:active {
     height: 60px;
     background: url(../images/flplogo.svg) no-repeat;
     background-size: contain;
+   
     background-position:center;   
 }
 .schedule .inner section{
@@ -841,45 +878,51 @@ a:active {
     align-items: stretch;
     height: 100%;
 }
-.schedule .inner section > div{
+.schedule  .inner section > div{
     flex:1;
     height:100%;
 
 }
-.schedule .inner section .chnl-header > div:last-child{
+.schedule  .inner section .chnl-header > div:last-child{
     font-family: ATCTimberlineRegular, monospace, courier, fixed;
-    font-size:18px !important;
     line-height:1.3;
     padding:1rem;
 }
-.schedule .inner section .chnl-header > div:first-child{
+.schedule  .inner section .chnl-header > div:first-child{
     max-height: 50%;
     height: 50%;
     background-position: center;
     background-size: cover;
     overflow:hidden;
 }
-.schedule .inner section > div:first-child{
+.schedule  .inner section > div:first-child{
     border-right:2px white solid;
 }
-.schedule .inner section .chnl-img{
+#on-demand-schedule  .inner section > div:first-child{
+    border-right:2px #ccda82 solid;
+}
+.schedule  .inner section .chnl-img{
     max-width:100%;
     width:100%;
 }
-.schedule .inner section div.chnl-logo{
+.schedule  .inner section div.chnl-logo{
     width:50%;
     background-position: center;
     background-repeat: no-repeat;
     background-size:80% 80%;
     padding:1rem;
 }
-.schedule .inner section .t{
+.schedule  .inner section .t{
     display:flex;
     justify-content: center;  
     align-items: stretch;
     text-align: center;
     border-top:2px white solid;
     border-bottom:2px white solid;
+}
+#on-demand-schedule  .inner section .t{
+    border-top:2px  #ccda82 solid;
+    border-bottom:2px  #ccda82 solid;
 }
 .schedule .inner section .t > div{
     flex:1;
@@ -888,34 +931,65 @@ a:active {
     font-size:20px !important;
     font-weight:bold;
 }
-.schedule .inner section .t > div:first-child{
+.schedule  .inner section .t > div:first-child{
     display: flex;
     justify-content: center;
 }
-.schedule .inner section .t > div > div{
+.schedule  .inner section .t > div > div{
     align-self:center;
 }
-.schedule .inner section .t > div:first-child{
+.schedule  .inner section .t > div:first-child{
     color:#000;
     background:#fff;
 }
-.schedule .inner section div.chnl-schedule{
+#on-demand-schedule .inner section .t > div:first-child{
+    color:#fff;
+    background:#000;
+}
+.schedule  .inner section div.chnl-schedule{
     background:#fff;
     color:#000;
     padding:1rem;
-        overflow: scroll;
+    overflow: auto;
+    overflow-x: hidden;
 }
-.schedule .inner section div.chnl-schedule ul li{
+#on-demand-schedule  .inner section div.chnl-schedule{
+    background:#000;
+    color:#fff;
+    padding:1rem;
+    overflow: auto;
+    overflow-x: hidden;
+}
+.schedule  .inner section div.chnl-schedule ul li{
     width:100%;
     margin: 1rem 0;
     text-transform:uppercase;
-    font-size:14px !important;
+}
+.schedule  .inner section div.chnl-schedule ul li a:hover{
+    margin-left:5px;
+    transition: margin-left 0.2s ease;
+}
+.schedule  .inner section div.chnl-schedule ul li a{
+    margin-left:0px;
+    transition: margin-left 0.2s ease;
+    display: block;
+}
+.schedule  .inner section div.chnl-schedule ul li div{
+    margin-bottom:0.3rem;
+}
+.schedule  .inner section div.chnl-schedule ul li a div:last-child,
+.schedule  .inner section div.chnl-schedule ul li div.od{
+    color:#ccda82;
 }
 .schedule .inner section div.chnl-schedule ul li:first-child{
     font-family: ATCTimberlineBold, monospace, courier, fixed;
     text-align:center;
     border-bottom:1px solid #000;
     padding:0 0 0.5rem 0;
+
+}
+#on-demand-schedule .inner section div.chnl-schedule ul li:first-child{
+    border-bottom:1px solid #fff;
 }
 
 .tv-guide .channels{
@@ -967,9 +1041,7 @@ a:active {
 }
 section{
 	width:100%;
-	border:5px solid #00f;
-	border-left:10px solid #00f;
-	border-right:10px solid #00f;
+    border:none;
 	margin-bottom:0.5rem;
 }
 section .header{
@@ -1098,11 +1170,22 @@ section .broadcasts > div{
 .mb{
     display:none;
 }
-.header .lbl span {
-    padding: 13px 16px 10px 16px !important;
-    font-size: 0.9rem !important;
+.mb-close-btn{
+    cursor: pointer;
+    position: absolute;
+    right: 76px;
+    top: 32px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    padding: 0.75em 0.75em 0.6em 0.75em;
+    color: #fff;
+    background: #000;
+    z-index: 99;
 }
-
+#on-demand-schedule .mb-close-btn{
+    color: #000;
+    background: #fff;
+}
 @media ( max-width: 800px ) {
 
     body{
@@ -1120,22 +1203,7 @@ section .broadcasts > div{
         position: absolute;
         z-index:99;
         width: 100%;
-        bottom: 62px;
-    }
-    header.header{
-        width:100%;
-        left:0;
-        top: 35px;
-    }
-    #channel-logo-mark {
-        flex: 2 !important;
-        text-align: center;
-    }
-    div.channel-msgs .ticker__item{
-        font-size:0.8rem !important;
-    }
-    div#channel-logo-mark img{
-        width:100%;
+        bottom: 65px;
     }
     #channel{
         width: 100%;
@@ -1148,9 +1216,6 @@ section .broadcasts > div{
         width:100%;
         padding:0;
     }
-    .tv-guide, .schedule, .aboutFMTV{
-        flex: 0 0 calc(100%);
-    } 
     .tv-guide .channels {
         flex-direction: column;
     }   
@@ -1178,12 +1243,14 @@ section .broadcasts > div{
         align-self: flex-end;
         margin:2% 0;
     }
-
+    .header .lbl span{
+        font-size:80%;
+    }
+    .loader,
     .schedule{
-
+        padding:0;
     } 
     .aboutFMTV{
-
        height:auto;
     }
     .aboutFMTV .inner{
@@ -1205,9 +1272,7 @@ section .broadcasts > div{
     section .channel-header .logo{
         -webkit-align-self: flex-end;
         align-self: flex-end;
-
-    }
-   
+    }   
     section .channel-header .logo img {
         max-width: 50%;
     }
@@ -1224,19 +1289,21 @@ section .broadcasts > div{
     #site-content{
         width:100%;
         margin: 0;
-    }
-    .schedule-btn .btn, .fullscreen-btn .btn{
-        font-size:0.5rem;
-    }
+    } 
+    .section-inner{
+       height: 36%;
+    }  
     .channel-controls > div{
-        flex: 0 0 calc(100%);
         margin: 0 10px 10px 10px;
     }
+     .partners > div{
+        display:inline-block;
+        width: 100%;
+     }
     .partners .red.dot{
         display:none;
     }   
     .schedule .inner, .aboutFMTV .inner {
-        /* width: 100%; */
         height: 100%;
         flex: 0 0 calc(100%);
         position: relative;
@@ -1253,8 +1320,7 @@ section .broadcasts > div{
         height: auto;
     }    
     .schedule .inner section > div:first-child {
-        border-right: none;
-        
+        border-right: none;        
     }
     .schedule .inner section .chnl-header > div:first-child{
         width: 100%;
@@ -1264,14 +1330,12 @@ section .broadcasts > div{
         overflow:auto;
         min-height: 200px;
     }
-    .partners{
-        font-size:0.5rem;
-    }
     .channel-controls{
         bottom: 0px;
         height:56px;
         position: fixed;
         background:#000; 
+        padding: 0.7rem 0;
     }
     .logo-pause > div:first-child{
         width:40%;
@@ -1281,7 +1345,6 @@ section .broadcasts > div{
         margin: 0.5%;
         height: 40px;
     }
-
     .gen-btns{
         display:flex;
         flex-direction:row;
@@ -1293,31 +1356,24 @@ section .broadcasts > div{
         width: auto;
         margin:2% 0;
         padding: 4% 5% 4% 5%;
+        font-size: 80%;
     }
      .channels-controller .btn.about{
     }  
     .mb-close-btn{
         position:fixed;
-        top:0;
-        right:0;
-        cursor:pointer;
-        background: #000;
-        padding:3% 4%;
-        width: auto;
-        height: 30px;
-        /*display:none;*/
-        z-index:999999;
-        font-size: 0.75rem;
+        top:40px;
+        right: 10%;
+        margin-right: -5%;
     }
-
     div.crew{
-        width: 80% !important;
+        width: 100% !important;
         margin: 0 auto;
     }
     div.crew a{
         flex:1;
+        background-position: center !important;
     }
-
     .channel-menu {
         width: 90%;
         margin: 0 auto;
@@ -1326,16 +1382,30 @@ section .broadcasts > div{
         flex-wrap: wrap;
         justify-content: space-around;
     }
+    .schedule-btn .btn, 
+    .fullscreen-btn .btn,
+    .on-demand-btn .btn{
+        padding:0.5rem;
+        font-size:50%;
+    }
+    .partners{
+        text-align: center;
+    }
+    .partners > div{
+        width:90%;
+    }
+    .partners > div a{
+        font-size: 60%
+    }
     @media (orientation: landscape) {
-     .section-inner{
-       /* height: 46%;*/
-       max-width: 70%;
-       margin: 0 auto;
-     }
-       
+         .section-inner{
+           max-width: 70%;
+           margin: 0 auto;
+         }
+           
     }
 
-    @media (orientation: portrait) {
+   /* @media (orientation: portrait) {
      .section-inner{
         top: 70px;
         height:36%;
@@ -1343,5 +1413,5 @@ section .broadcasts > div{
         -webkit-clip-path: inset(10px 20px 10px 20px round 2.5rem);
         
      }
-    }
+    }*/
 }

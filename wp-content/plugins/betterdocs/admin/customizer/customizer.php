@@ -5544,6 +5544,178 @@ function betterdocs_customize_register( $wp_customize ) {
 		),
 	) ) );
 
+	// Docs Subcategory Color
+
+	$wp_customize->add_setting( 'betterdocs_archive_article_subcategory_color' , array(
+		'default'     => $defaults['betterdocs_archive_article_subcategory_color'],
+		'capability'    => 'edit_theme_options',
+	    'transport'   => 'postMessage',
+	    'sanitize_callback' => 'betterdocs_sanitize_rgba',
+	) );
+
+	$wp_customize->add_control(
+		new BetterDocs_Customizer_Alpha_Color_Control(
+		$wp_customize,
+		'betterdocs_archive_article_subcategory_color',
+		array(
+			'label'      => __( 'Docs Subcategory Color', 'betterdocs' ),
+			'section'    => 'betterdocs_archive_page_settings',
+			'settings'   => 'betterdocs_archive_article_subcategory_color',
+			'priority' 	 => 44
+		) )
+	);
+
+	// Docs Subcategory Hover Color
+
+	$wp_customize->add_setting( 'betterdocs_archive_article_subcategory_hover_color' , array(
+		'default'     => $defaults['betterdocs_archive_article_subcategory_hover_color'],
+		'capability'    => 'edit_theme_options',
+	    'sanitize_callback' => 'betterdocs_sanitize_rgba',
+	) );
+
+	$wp_customize->add_control(
+		new BetterDocs_Customizer_Alpha_Color_Control(
+		$wp_customize,
+		'betterdocs_archive_article_subcategory_hover_color',
+		array(
+			'label'      => __( 'Docs Subcategory Hover Color', 'betterdocs' ),
+			'section'    => 'betterdocs_archive_page_settings',
+			'settings'   => 'betterdocs_archive_article_subcategory_hover_color',
+			'priority' => 44
+		) )
+	);
+
+	// Docs Subcategory Font Size
+
+	$wp_customize->add_setting( 'betterdocs_archive_article_subcategory_font_size', array(
+		'default'       => $defaults['betterdocs_archive_article_subcategory_font_size'],
+		'capability'    => 'edit_theme_options',
+		'transport' => 'postMessage',
+		'sanitize_callback' => 'betterdocs_sanitize_integer'
+
+	) );
+
+	$wp_customize->add_control( new BetterDocs_Customizer_Range_Value_Control(
+		$wp_customize, 'betterdocs_archive_article_subcategory_font_size', array(
+		'type'     => 'betterdocs-range-value',
+		'section'  => 'betterdocs_archive_page_settings',
+		'settings' => 'betterdocs_archive_article_subcategory_font_size',
+		'label'    => __( 'Docs Subcategory Font Size', 'betterdocs' ),
+		'priority' => 44,
+		'input_attrs' => array(
+			'class'  => '',
+			'min'    => 0,
+			'max'    => 50,
+			'step'   => 1,
+			'suffix'  => 'px', //optional suffix
+		),
+	) ) );
+
+	// Subcategory Icon Color
+
+	$wp_customize->add_setting( 'betterdocs_archive_subcategory_icon_color' , array(
+		'default'     => $defaults['betterdocs_archive_subcategory_icon_color'],
+		'capability'    => 'edit_theme_options',
+	    'transport'   => 'postMessage',
+	    'sanitize_callback' => 'betterdocs_sanitize_rgba',
+	) );
+
+	$wp_customize->add_control(
+		new BetterDocs_Customizer_Alpha_Color_Control(
+		$wp_customize,
+		'betterdocs_archive_subcategory_icon_color',
+		array(
+			'label'      => __( 'Subcategory Icon Color', 'betterdocs' ),
+			'section'    => 'betterdocs_archive_page_settings',
+			'settings'   => 'betterdocs_archive_subcategory_icon_color',
+			'priority' => 44
+		) )
+	);
+
+	// Subcategory Icon Font Size
+
+	$wp_customize->add_setting( 'betterdocs_archive_subcategory_icon_font_size', array(
+		'default'       => $defaults['betterdocs_archive_subcategory_icon_font_size'],
+		'capability'    => 'edit_theme_options',
+		'transport' => 'postMessage',
+		'sanitize_callback' => 'betterdocs_sanitize_integer'
+
+	) );
+
+	$wp_customize->add_control( new BetterDocs_Customizer_Range_Value_Control(
+		$wp_customize, 'betterdocs_archive_subcategory_icon_font_size', array(
+		'type'     => 'betterdocs-range-value',
+		'section'  => 'betterdocs_archive_page_settings',
+		'settings' => 'betterdocs_archive_subcategory_icon_font_size',
+		'label'    => __( 'Subcategory Icon Font Size', 'betterdocs' ),
+		'priority' => 44,
+		'input_attrs' => array(
+			'class'  => '',
+			'min'    => 0,
+			'max'    => 50,
+			'step'   => 1,
+			'suffix' => 'px', //optional suffix
+		),
+	) ) );
+
+	// Docs List Color
+
+	$wp_customize->add_setting( 'betterdocs_archive_subcategory_article_list_color' , array(
+		'default'     => $defaults['betterdocs_archive_subcategory_article_list_color'],
+		'capability'    => 'edit_theme_options',
+	    'transport'   => 'postMessage',
+	    'sanitize_callback' => 'betterdocs_sanitize_rgba',
+	) );
+
+	$wp_customize->add_control(
+		new BetterDocs_Customizer_Alpha_Color_Control(
+		$wp_customize,
+		'betterdocs_archive_subcategory_article_list_color',
+		array(
+			'label'      => __( 'Subcategory Docs List Color', 'betterdocs' ),
+			'section'    => 'betterdocs_archive_page_settings',
+			'settings'   => 'betterdocs_archive_subcategory_article_list_color',
+			'priority' 	 => 44,
+		) )
+	);
+
+	$wp_customize->add_setting( 'betterdocs_archive_subcategory_article_list_hover_color' , array(
+		'default'     => $defaults['betterdocs_archive_subcategory_article_list_hover_color'],
+		'capability'    => 'edit_theme_options',
+	    'sanitize_callback' => 'betterdocs_sanitize_rgba',
+	) );
+
+	$wp_customize->add_control(
+		new BetterDocs_Customizer_Alpha_Color_Control(
+		$wp_customize,
+		'betterdocs_archive_subcategory_article_list_hover_color',
+		array(
+			'label'      => __( 'Subcategory List Hover Color', 'betterdocs' ),
+			'section'    => 'betterdocs_archive_page_settings',
+			'settings'   => 'betterdocs_archive_subcategory_article_list_hover_color',
+			'priority' 	 => 44
+		) )
+	);
+	
+	$wp_customize->add_setting( 'betterdocs_archive_subcategory_article_list_icon_color' , array(
+		'default'     => $defaults['betterdocs_archive_subcategory_article_list_icon_color'],
+		'capability'    => 'edit_theme_options',
+	    'transport'   => 'postMessage',
+	    'sanitize_callback' => 'betterdocs_sanitize_rgba',
+	) );
+
+	$wp_customize->add_control(
+		new BetterDocs_Customizer_Alpha_Color_Control(
+		$wp_customize,
+		'betterdocs_archive_subcategory_article_list_icon_color',
+		array(
+			'label'      => __( 'Subcategory List Icon Color', 'betterdocs' ),
+			'section'    => 'betterdocs_archive_page_settings',
+			'settings'   => 'betterdocs_archive_subcategory_article_list_icon_color',
+			'priority' 	 => 44
+		) )
+	);
+
 	// Live Search
 
 	$wp_customize->add_section( 'betterdocs_live_search_settings' , array(
