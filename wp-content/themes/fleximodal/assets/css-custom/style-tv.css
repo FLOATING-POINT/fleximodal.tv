@@ -413,6 +413,7 @@ nav .separator div{
 	position: absolute;
 	background: #000;
 	visibility: hidden;
+    z-index: 999;
 }
 .logo-pause > div:first-child{
 	left: 50%;
@@ -425,6 +426,9 @@ nav .separator div{
     text-align: center;
     cursor: pointer;
     display: block;
+}
+.logo-pause img{
+    max-width:280px;
 }
 .logo-pause > div > div:last-child{
 	padding:0.75rem 0;

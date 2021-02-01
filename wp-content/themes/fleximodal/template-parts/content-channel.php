@@ -205,7 +205,6 @@
 
 			}	?>
 
-		<amp-script layout="container">
 	      <script>
 
 	      	(function($){	
@@ -322,7 +321,6 @@
 	    					player.loadVideoById({'videoId': video_id,'startSeconds': 0});
 	    					
 	    				}
-	    				console.log("video_id "+video_id);
 
 	    				setTicker();
 	    				
@@ -354,9 +352,12 @@
 
 				        }
 				      }
-				      window.stopVideo = function() {
+				    window.stopVideo = function() {
 				        player.stopVideo();
-				      }
+				    }
+				    window.pauseVideo = function() {
+				        player.pauseVideo();
+				    }
 						
 					window.playFullscreen = function(){
 
@@ -378,8 +379,6 @@
 
 					$(document).on('click', '#content', function(){  
 
-						var state = player.getPlayerState();
-
 						if(!player.isMuted() ){
 							//player.pauseVideo();
 							player.mute();
@@ -391,7 +390,7 @@
 							player.playVideo();
 							player.unMute();
 							$('.logo-pause').css({'visibility':'hidden'});
-						}	
+						}
 
 					});
 

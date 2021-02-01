@@ -41,7 +41,7 @@
 
 	<?php get_template_part('template-parts/channel-controls'); ?>	
 
-	<div class="section-inner" id="content">
+	<div class="section-inner on-demand" id="content">
 
 		<div class="logo-pause">
 			<div>
@@ -50,6 +50,8 @@
 					$image = get_field('channel_logo');
 					if( !empty( $image ) ): ?>
 					    <img src="<?php echo esc_url($image['url']); ?>" alt="<?php echo esc_attr($image['alt']); ?>" title="Channel <?php echo esc_attr($image['title']); ?>" />
+					<?php else: ?>
+						<img src="<?php echo get_template_directory_uri(); ?>/assets/images/Fleximodal_TV_Logo_2_white.svg" alt="FLEXIMODAL.TV" title="FLEXIMODAL.TV" />
 					<?php endif; ?>
 
 				</div>
@@ -249,22 +251,43 @@
 						playFullscreen();
 					});
 
+					window.showPlayerLogo = function(){
+
+						$('.logo-pause').css({'visibility':'visible'});
+					    var m_l = $('.logo-pause > div').width()*-.5;
+						var m_t = $('.logo-pause > div').outerHeight()*-.5;							
+						$('.logo-pause > div').css({'margin-top':m_t+'px', 'margin-left':m_l+'px'});
+
+					}
+					window.hidePlayerLogo = function(){
+						$('.logo-pause').css({'visibility':'hidden'});
+					}
+
 					$(document).on('click', '#content', function(){  
 
-						var state = player.getPlayerState();
+						console.log('on-demand '+$('#content').hasClass('on-demand'));
 
-						if(!player.isMuted() ){
-							//player.pauseVideo();
-							player.mute();
-							$('.logo-pause').css({'visibility':'visible'});
-				        	var m_l = $('.logo-pause > div').width()*-.5;
-							var m_t = $('.logo-pause > div').outerHeight()*-.5;							
-							$('.logo-pause > div').css({'margin-top':m_t+'px', 'margin-left':m_l+'px'});
-						}else {
-							player.playVideo();
-							player.unMute();
-							$('.logo-pause').css({'visibility':'hidden'});
-						}	
+						if($('#content').hasClass('on-demand')){
+
+							if(player.getPlayerState() == 1 ){ // video playing
+								player.pauseVideo();
+								showPlayerLogo();
+							} else{
+								player.playVideo();
+								hidePlayerLogo();
+							}
+
+						} else {
+
+							if(!player.isMuted() ){
+								player.mute();
+								showPlayerLogo();
+							}else {
+								player.playVideo();
+								player.unMute();
+								hidelayerLogo();
+							}	
+					}
 
 					});
 
