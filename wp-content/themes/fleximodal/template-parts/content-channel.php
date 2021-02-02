@@ -333,10 +333,8 @@
 						player.playVideo();
 						setTimeout(function(){
 							player.playVideo();
-							console.log("onPlayerReady2");
 
 						}, 1000);
-						console.log("onPlayerReady"); 
 
 				    }
 			      
