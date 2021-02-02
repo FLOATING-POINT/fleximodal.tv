@@ -279,7 +279,7 @@ function setup(){
 
     wp_enqueue_style( 'style', get_template_directory_uri() . '/assets/css/style.css', array('reset'), '1.0', 'screen, projection' );
     wp_enqueue_style( 'style-tv', get_template_directory_uri() . '/assets/css-custom/style-tv.css', array('reset'), '1.0', 'screen, projection' );
-    //wp_enqueue_style( 'style-ticker', get_template_directory_uri() . '/assets/css-custom/ticker.css', array('reset'), '1.0', 'screen, projection' );
+    wp_enqueue_style( 'style-ticker', get_template_directory_uri() . '/assets/css-custom/ticker.css', array('reset'), '1.0', 'screen, projection' );
     
   } else{
     $theme_version = wp_get_theme()->get( 'Version' );

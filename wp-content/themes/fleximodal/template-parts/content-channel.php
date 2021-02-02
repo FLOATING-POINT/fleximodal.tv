@@ -252,7 +252,7 @@
 				          height: '100%',
 				          width: '100%',
 				          videoId: video_id,
-				          playerVars: { 'autoplay': 0, 'controls': 0, 'modestbranding':1,'playsinline':1, 'autohide':1,'wmode':'opaque', 'loop':0 <?php if($start_secs > 0): ?>, 'start':<?php echo $start_secs; ?> <?php endif; ?> <?php if($end_secs > 0): ?>, 'end':<?php echo $end_secs; ?> <?php endif; ?> },
+				          playerVars: { 'autoplay': 1, 'controls': 0, 'modestbranding':1,'playsinline':1, 'autohide':1,'wmode':'opaque', 'loop':0 <?php if($start_secs > 0): ?>, 'start':<?php echo $start_secs; ?> <?php endif; ?> <?php if($end_secs > 0): ?>, 'end':<?php echo $end_secs; ?> <?php endif; ?> },
 				          events: {
 				            'onReady': onPlayerReady,
 				            'onStateChange': onPlayerStateChange
@@ -330,6 +330,7 @@
 				    window.onPlayerReady = function(event) {
 
 	    				setTicker();
+	    				console.log("onPlayerReady");
 
 						player.playVideo();
 

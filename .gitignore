@@ -8,8 +8,10 @@
 /logs/
 /wp-content/cache/
 /wp-config.php
+/wp-config-sample.php
+/mdump.sql
 
-
+/mysqldump
 # ignore everything in the "wp-content" directory, except:
 # "mu-plugins", "plugins", "themes" directory
 #wp-content/*
