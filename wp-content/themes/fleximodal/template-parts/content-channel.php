@@ -329,10 +329,10 @@
 
 				    window.onPlayerReady = function(event) {
 
-	    				setTicker();
-	    				console.log("onPlayerReady");
-
+	    				setTicker();	
 						player.playVideo();
+						setTimeout(function(){player.playVideo();}, 500);
+						console.log("onPlayerReady");
 
 				    }
 			      
@@ -341,7 +341,6 @@
 				      	if(event.data == YT.PlayerState.PLAYING){
 
 				      	} else if (event.data == YT.PlayerState.ENDED) {
-				      		console.log("YT.PlayerState.ENDED");
 				      		playNextVideo(); //<-- this is causing lots of issues
 
 				        } else if (event.data == YT.PlayerState.PAUSED){				        	
