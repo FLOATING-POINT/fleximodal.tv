@@ -336,7 +336,7 @@
 							console.log("onPlayerReady2");
 
 						}, 1000);
-						console.log("onPlayerReady");
+						console.log("onPlayerReady"); 
 
 				    }
 			      
