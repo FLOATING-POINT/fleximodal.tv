@@ -331,7 +331,11 @@
 
 	    				setTicker();	
 						player.playVideo();
-						setTimeout(function(){player.playVideo();}, 500);
+						setTimeout(function(){
+							player.playVideo();
+							console.log("onPlayerReady2");
+
+						}, 1000);
 						console.log("onPlayerReady");
 
 				    }
