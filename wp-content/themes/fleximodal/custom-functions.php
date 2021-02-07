@@ -322,7 +322,15 @@ function setup(){
     wp_enqueue_style( 'style-tv', get_template_directory_uri() . '/assets/css-custom/style-tv.css', array('reset'), '1.0', 'screen, projection' );
     wp_enqueue_style( 'style-ticker', get_template_directory_uri() . '/assets/css-custom/ticker.css', array('reset'), '1.0', 'screen, projection' );
     
+  } else if(get_post_type() == 'wp-knowledgebase'){
+    
+    $theme_version = wp_get_theme()->get( 'Version' );
+    wp_enqueue_style( 'twentytwenty-style', get_stylesheet_uri(), array(), $theme_version );
+    wp_style_add_data( 'twentytwenty-style', 'rtl', 'replace' );
+    wp_enqueue_style( 'style', get_template_directory_uri() . '/assets/css/wiki.css', array('reset'), '1.0', 'screen, projection' );
+
   } else{
+    wp_enqueue_style( 'wiki', get_template_directory_uri() . '/assets/css/wiki.css', array('reset'), '1.0', 'screen, projection' );
     $theme_version = wp_get_theme()->get( 'Version' );
     wp_enqueue_style( 'twentytwenty-style', get_stylesheet_uri(), array(), $theme_version );
     wp_style_add_data( 'twentytwenty-style', 'rtl', 'replace' );

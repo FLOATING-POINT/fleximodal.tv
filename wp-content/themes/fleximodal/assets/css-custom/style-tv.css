@@ -1190,6 +1190,9 @@ section .broadcasts > div{
     color: #000;
     background: #fff;
 }
+ .header .lbl.on-demand{
+    min-width: 150px;
+}
 @media ( max-width: 800px ) {
 
     body{
@@ -1250,6 +1253,7 @@ section .broadcasts > div{
     .header .lbl span{
         font-size:80%;
     }
+
     .loader,
     .schedule{
         padding:0;

@@ -800,6 +800,7 @@ section .broadcasts > div{
 .mb{
     display:none;
 }
+
 @media ( max-width: 800px ) {
 
     body{

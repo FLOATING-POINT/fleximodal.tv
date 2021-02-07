@@ -15,6 +15,17 @@
 
 <article <?php post_class(); ?> id="channel">
 
+
+	<div class="loader">
+		<div class="inner">
+			<div class="p1"></div>
+			<div class="p2"></div>
+			<div class="p3"></div>
+			<div class="p4"></div>
+			<div class="p5"></div>
+		</div>
+	</div>
+
 	
 	<div class="tv-guide">
 		<div class="mb-close-btn">CLOSE</div>
